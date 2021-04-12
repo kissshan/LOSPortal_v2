@@ -1,0 +1,98 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+              <b>Customer Basic Details</b>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="firstName"><b>Name</b></label>
+                    <input type="text" class="form-control" id="firstName" ng-model="accountDetails.Name">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="middleName"><b>Date of birth</b></label>
+                    <input type="date" class="form-control" id="middleName" ng-blur='onChange();' ng-model="accountDetails.Date_of_birth__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Gender</b></label>
+                    <select id="inputState" class="form-control" ng-blur='onChange();' ng-model="accountDetails.Gender__c">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="bankName"><b>Phone</b></label>
+                    <input type="phone" class="form-control" id="bankName" ng-blur='onChange();' ng-model="accountDetails.Phone">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="accNumber"><b>Email</b></label>
+                    <input type="email" class="form-control" id="accNumber" ng-blur='onChange();' ng-model="accountDetails.Customer_Email__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="ifscCode"><b>Pan Number</b></label>
+                    <input type="text" class="form-control" id="ifscCode" ng-blur='onChange();' ng-model="accountDetails.Pan_Number__c">
+                  </div>
+                </div>
+                <div class="form-row">
+                  
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Marital Status</b></label>
+                    <select id="inputState" class="form-control" ng-blur='onChange();' ng-model="accountDetails.Marital_Status__c">
+                      <option>Single</option>
+                      <option>Married</option>
+                    </select>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        
+          <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+              <b>Customer Address Details</b>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label for="inputAddress"><b>Street</b></label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" ng-blur='onChange();' ng-model="accountDetails.BillingStreet">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="inputCity"><b>City</b></label>
+                    <input type="text" class="form-control" id="inputCity" ng-blur='onChange();'  ng-model="accountDetails.BillingCity">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputCity"><b>State</b></label>
+                    <input type="text" class="form-control" id="inputCity"  ng-blur='onChange();' ng-model="accountDetails.BillingState">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputZip"><b>Postal Code</b></label>
+                    <input type="text" class="form-control" id="inputZip" ng-blur='onChange();'  ng-model="accountDetails.BillingPostalCode">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="bankName"><b>Country</b></label>
+                    <input type="text" class="form-control" id="bankName" ng-blur='onChange();' ng-model="accountDetails.BillingCountry">
+                  </div>
+                </div>
+              </form>
+            </div>
+            
+          </div>
+    </div>
+    <div class="card-footer text-center">
+        <button type="submit" class="btn btn-primary btn-default" ng-click="updateAccountDetails();" ng-show='saveDetail'>Save Details</button>
+      </div>
+</div>
+

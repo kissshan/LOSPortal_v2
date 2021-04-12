@@ -1,0 +1,59 @@
+<div class="text-center text-primary" ng-show="!loanTypes">
+    <div class="card py-2 py-md-3 border align-middle shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <div style="font-size:xxx-large">
+                <i class="fa fa-plus-circle" aria-hidden="true" ng-click="enableLoanType();"></i>
+            </div>
+            
+            <h2><b>Create new application</b></h2>
+        </div>
+    </div>
+</div>
+<div class="row text-center text-primary" ng-show="loanTypes && !showProductList">
+    <div class="col-sm-6">
+      <div class="card rounded shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <div style="font-size:xxx-large">
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+            </div>
+            <div style="padding-top:3%">
+                <button type="button" class="btn btn-primary btn-lg">BUSINESS</button>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card rounded shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <div style="font-size:xxx-large">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+            <div style="padding-top:3%">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="getRetailProducts();">INDIVIDUAL</button>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-columns text-center" ng-show = "showProductList">
+    <div class="card shadow p-3 mb-5 bg-white rounded" ng-repeat="x in retailProduct">
+      <div class="card-body ">
+          <div>
+            <i class="fa fa-university" aria-hidden="true"></i>
+          </div>
+          <div class="text-primary">
+              <h5>{{x.Name}}</h5>
+          </div>
+        <p class="card-text"><b>Loans Up To INR {{x.Maximum_Amount__c}}</b></p>
+        <div>
+            <a class="btn btn-primary" href="/view/customerDetails/{{accountId}}/productId/{{x.Id}}" role="button">Apply Now</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+ 

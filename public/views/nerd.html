@@ -1,0 +1,31 @@
+<div>
+    {{tagline}}
+</div>
+
+<div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Application Name" aria-label="First name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Account Id" aria-label="Last name" ng-model="appData.Account__c">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Application Stage" aria-label="Last name" ng-model="appData.Application_Stage__c">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Loan Amount" aria-label="Last name" ng-model="appData.Loan_Amount__c">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Product" aria-label="Last name" ng-model="appData.Product__c">
+      </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-secondary" ng-click="getApplication();">Create Application</button>
+  </div>
+  
+
+  <form>
+    <input type="file" onchange="angular.element(this).scope().filesChanged(this)" multiple/>
+    <button type="button" class="btn btn-secondary" ng-click="uploadFiles();">Upload Document</button>
+  </form>
+  

@@ -1,0 +1,328 @@
+<form id="msform">
+  <ul id="progressbar">
+    <li class="active" id="account"><strong>Bank/Income Details</strong></li>
+    <li class="" id="personal"><strong>Customer Details</strong></li>
+    <li class="" id="payment"><strong>Loan Details</strong></li>
+    <li class="" id="confirm"><strong>Approved Offers</strong></li>
+  </ul>
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated aaaaaaaaa" id="progressbarr" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"  style="width: 25%"></div>
+  </div>
+</form>
+
+<div id="accordion">
+  <div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableBankIncomeDetail">
+    <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+      <b>Bank and Income Details</b>
+    </div>
+    <div class="card-body">
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-header" style="background: #a00808; color:aliceblue" id="bankDetail">
+          
+          <button class="btn" data-toggle="collapse" data-target="#bankcollapseOne" aria-expanded="true" aria-controls="bankcollapseOne">
+            <b style="color:aliceblue">Bank Details</b>
+          </button>
+        </div>
+        <div id="bankcollapseOne" class="collapse show" aria-labelledby="bankDetail" data-parent="#accordion">
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="firstName"><b>First Name</b></label>
+                  <input type="text" class="form-control" id="firstName" ng-model="bankDetailsMDL.First_Name__c">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="middleName"><b>Middle Name</b></label>
+                  <input type="text" class="form-control" id="middleName" ng-model="bankDetailsMDL.Middle_Name__c">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="lastName"><b>Last Name</b></label>
+                  <input type="text" class="form-control" id="lastName" ng-model="bankDetailsMDL.Last_Name__c">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="bankName"><b>Bank Name</b></label>
+                  <input type="text" class="form-control" id="bankName" ng-model="bankDetailsMDL.Bank_Name__c">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="accNumber"><b>Bank Account Number</b></label>
+                  <input type="text" class="form-control" id="accNumber" ng-model="bankDetailsMDL.Bank_Account_Number__c">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="ifscCode"><b>IFSC Code</b></label>
+                  <input type="text" class="form-control" id="ifscCode" ng-model="bankDetailsMDL.IFSC_Code__c">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div> 
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div class="card-header text-center" style="background: #a00808; color:aliceblue" id="incomeDetail">
+            <button class="btn collapsed" data-toggle="collapse" data-target="#incomecollapseOne" aria-expanded="false" aria-controls="incomecollapseOne">
+              <b style="color:aliceblue">Income Details</b>
+            </button>
+          </div>
+          <div id="incomecollapseOne" class="collapse show" aria-labelledby="incomeDetail" data-parent="#accordion">
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="monthlyIncome"><b>Monthly Income</b></label>
+                    <input type="number" class="form-control" id="monthlyIncome" ng-model="incomeDetailsMDL.Monthly_Income__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Income Type</b></label>
+                    <select id="inputState" class="form-control" ng-model="incomeDetailsMDL.Income_Type__c">
+                      <option>Salaried</option>
+                      <option>Self Employed</option>
+                      <option>Self Employed Businessman</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="lastName"><b>Gross Income</b></label>
+                    <input type="number" class="form-control" id="lastName" ng-model="incomeDetailsMDL.Gross_Income__c">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  
+                  <div class="form-group col-md-4">
+                    <label for="accNumber"><b>Monthly Additional Income</b></label>
+                    <input type="number" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Monthly_Additional_Income__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Source of Additional Income</b></label>
+                    <select id="inputState" class="form-control" ng-model="incomeDetailsMDL.Source_of_Additional_Income__c">
+                      <option>Agriculture</option>
+                      <option>Business</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="accNumber"><b>Taxable Amount</b></label>
+                    <input type="number" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Taxable_Amount__c">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="bankName"><b>Issued By</b></label>
+                    <input type="text" class="form-control" id="bankName" ng-model="incomeDetailsMDL.Issued_By__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="accNumber"><b>Issued Date</b></label>
+                    <input type="date" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Issued_Date__c">
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label for="accNumber"><b>Expiration Date</b></label>
+                    <input type="date" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Expiration_Date__c">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-center">
+      <button type="submit" class="btn btn-primary">Back</button>
+      <button type="submit" class="btn btn-primary" ng-click="visibleCustomerDetail();">Proceed</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableCustomerDetail">
+  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+    <b>Customer Details</b>
+  </div>
+  <div class="card-body">
+    
+    
+    <div> 
+      <div class="card shadow p-3 mb-5 bg-white rounded">
+        <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+          <b>Employer Details</b>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="monthlyIncome"><b>Employer Company Name</b></label>
+                <input type="text" class="form-control" id="monthlyIncome" ng-model="employmentDetailsMDL.Name">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState"><b>Employer Type</b></label>
+                <select id="inputState" class="form-control" ng-model="employmentDetailsMDL.Employment_Type__c">
+                  <option>Permanent</option>
+                  <option>Part-time</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="lastName"><b>Employment Status</b></label>
+                <input type="text" class="form-control" id="lastName" ng-model="employmentDetailsMDL.Employment_Status__c">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              
+              <div class="form-group col-md-4">
+                <label for="accNumber"><b>Gross Monthly Income</b></label>
+                <input type="number" class="form-control" id="accNumber" ng-model="employmentDetailsMDL.Gross_Monthly_Income__c">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="accNumber"><b>Net Monthly Income</b></label>
+                <input type="number" class="form-control" id="accNumber" ng-model="employmentDetailsMDL.Net_Monthly_Income__c">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="bankName"><b>Annual Income</b></label>
+                <input type="number" class="form-control" id="bankName" ng-model="employmentDetailsMDL.Net_Annual_Income__c">
+              </div>
+              
+              
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="bankName"><b>Designation</b></label>
+                <input type="text" class="form-control" id="bankName" ng-model="employmentDetailsMDL.Designation__c">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState"><b>Mode Of Salary</b></label>
+                <select id="inputState" class="form-control" ng-model="employmentDetailsMDL.Mode_Of_Salary__c">
+                  <option>Bank Transfer</option>
+                  <option>Cash</option>
+                </select>
+              </div>
+              
+              
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button type="submit" class="btn btn-primary" ng-click="backCustomerDetail();">Back</button>
+    <button type="submit" class="btn btn-primary" ng-click="visibleLoanDetail();">Proceed</button>
+  </div>
+</div>
+
+  
+<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableLoanDetail">
+  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+    <b>Bank Details</b> 
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="middleName"><b>Loan Amount</b></label>
+          <input type="number" class="form-control" id="middleName" ng-model="applicationDetailsMDL.Requested_Amount__c">
+        </div>
+        
+        <div class="form-group col-md-4">
+          <label for="inputState"><b>Loan Purpose</b></label>
+          <select id="inputState" class="form-control" ng-model="applicationDetailsMDL.Loan_Purpose__c">
+            <option>Expansion</option>
+            <option>Seasonal</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState"><b>Applicant Employment Type</b></label>
+          <select id="inputState" class="form-control" ng-model="applicationDetailsMDL.Applicant_Employment_Type__c">
+            <option>Self-Employed</option>
+            <option>Employed</option>
+            <option>Unemployed</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="bankName"><b>Requested Term</b></label>
+          <input type="number" class="form-control" id="bankName" ng-model="applicationDetailsMDL.Requested_Term__c">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="accNumber"><b>Requested Rate</b></label>
+          <input type="number" class="form-control" id="accNumber" ng-model="applicationDetailsMDL.Requested_Rate__c">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState"><b>Holiday Period</b></label>
+          <select id="inputState" class="form-control" ng-model="applicationDetailsMDL.Holiday_Period__c">
+            <option>One Month</option>
+            <option>Three Month</option>
+            <option>Six Month</option>
+            <option>One Year</option>
+            <option>Two Year</option>
+            <option>Three Year</option>
+            <option>Five Year</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        
+        <div class="form-group col-md-4">
+          <label for="inputState"><b>Applicant Resident Status</b></label>
+          <select id="inputState" class="form-control" ng-model="applicationDetailsMDL.Primary_Applicant_Residence_Status__c">
+            <option>Indian</option>
+            <option>NRI</option>
+          </select>
+        </div>
+        
+        <div class="form-group col-md-4">
+          <label for="ifscCode"><b>Applicant Age</b></label>
+          <input type="number" class="form-control" id="ifscCode" ng-model="applicationDetailsMDL.Primary_Applicant_Age__c">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer text-center">
+    <button type="submit" class="btn btn-primary" ng-click="backLoanDetail();">Back</button>
+    <button type="submit" class="btn btn-primary" ng-click="applyforLoan();">APPLY FOR LOAN</button>
+  </div>
+</div>
+
+<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableOfferDetail">
+  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+    <b>Bank Offers</b> 
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><b>Bank Name</b></th>
+          <th scope="col"><b>Term</b></th>
+          <th scope="col"><b>Interest</b></th>
+          <th scope="col"><b>Requested Amount</b></th>
+          <th scope="col"><b>Action</b></th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="x in offersList">
+        <tr>
+          <th scope="row">Axis Bank</th>
+          <td>{{x.Max_Term__c}} Months</td>
+          <td>{{x.Interest__c}}</td>
+          <td>{{applicationDetailsMDL.Requested_Amount__c}}</td>
+          <td><button type="submit" class="btn btn-primary">APPLY</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+      
+</div>
+  
+
+
+
+

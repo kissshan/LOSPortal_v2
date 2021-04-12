@@ -1,0 +1,30 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card-header d-flex justify-content-between" style="background: #a00808; color:aliceblue">
+    <b>All Parties</b> 
+    <button type="button" class="mb-1 btn btn-primary " ng-click="reDirectCreateParty();">Add Party Contact</button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Party Name</th>
+          <th scope="col">PARTY TYPE</th>
+          <th scope="col">Cibil Score</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat='eachRec in partiesList'>
+        <tr>
+          <td>{{eachRec.Name}}</td>
+          <td>{{eachRec.Party_Type__c}}</td>
+          <td>{{eachRec.Cibil__c}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+      
+</div>
+
+
+
+  

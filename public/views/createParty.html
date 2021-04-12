@@ -1,0 +1,48 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+              <b>Customer Basic Details</b>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="fname">First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" ng-model="partyDataMDL.firstname">
+                  </div>
+                  <div class="form-group col-md-4">
+                        <label for="fname">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last Name" ng-model="partyDataMDL.lastname">
+                  </div>
+                  <div class="form-group col-md-4">
+                        <label for="lname">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" ng-model="partyDataMDL.Email">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                         <label for="lname">Secondary Email</label>
+                        <input type="email" class="form-control" placeholder="Secondary Email" ng-model="partyDataMDL.Secondary_Email__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="lname">Mobile No.</label>
+                        <input type="phone" class="form-control" placeholder="Mobile No." ng-model="partyDataMDL.MobilePhone">
+                  </div>
+                  <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect12" >Party Type</label>
+                        <select class="form-control" id="exampleFormControlSelect12" ng-model="partyDataMDL.Party_Type__c">
+                            <option>Borrower</option>
+                            <option>Signatory</option>
+                        </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+    <div class="card-footer text-center">
+        <button type="submit" class="btn btn-primary btn-default" ng-click="createParty();">Add Party/Contact</button>
+      </div>
+</div>

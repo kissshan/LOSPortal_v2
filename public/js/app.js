@@ -1,0 +1,2 @@
+angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl', 'NerdService', 'GeekCtrl', 'GeekService','Partiesctrl','PartiesService','CollateralCtrl','CollateralService','AccountCtrl','AccountService','ApplicationCtrl','ApplicationService',
+'CreateApplicationCtrl','CreateCollateralCtrl','CreatePartyCtrl','DocumentCtrl','DocumentService','SigninCtrl','SigninService','RegisterCtrl','RegisterService','NewapplicationCtrl','CustomerDetailsCtrl','SignupCtrl']);

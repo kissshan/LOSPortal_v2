@@ -1,0 +1,38 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card-header card-header-border-bottom d-flex justify-content-between" style="background: #a00808; color:aliceblue">
+    <h2 style="color:aliceblue">All Collateral</h2>
+
+    <button type="button" class="mb-1 btn btn-primary " ng-click="reDirectCreateCollateral();">New Collateral</button>
+  </div>
+  <div class="card-body">
+    <div>
+      <table id="basic-data-table" class="table nowrap" style="width:100%">
+        <thead>
+          <tr>
+            <th scope="col"><b>NAME</b></th>
+            <th scope="col"><b>STATUS</b></th>
+            <th scope="col"><b>Collateral Type</b></th>
+            <th scope="col"><b>Market Value</b></th>
+            <th scope="col"><b>Coverage Used</b></th>
+            <th scope="col"><b>Coverage Remaining</b></th>
+          </tr>
+        </thead>
+        <tbody ng-repeat='eachRec in collateralList'>
+          <tr>
+            <th scope="row">{{eachRec.Name}}</th>
+            <td scope="row">{{eachRec.Status__c}}</td>
+            <td scope="row">{{eachRec.Collateral_Type__c}}</td>
+            <td scope="row">{{eachRec.Market_Valuation__c}}</td>
+            <td scope="row">{{eachRec.Coverage_Used__c}}</td>
+            <td scope="row">{{eachRec.Coverage_Remaining__c}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+      
+  </div>
+      
+</div>
+
+

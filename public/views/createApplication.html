@@ -1,0 +1,167 @@
+
+<div class="card card-default">
+    <div class="card-header card-header-border-bottom">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="" ng-click="testMethod();" role="tab" aria-controls="home" >Create Application</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="" role="tab" ng-click="testMethod1();" aria-controls="profile" aria-selected="false">Add Parties</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="" role="tab" aria-controls="contact" ng-click="testMethod2();" aria-selected="false">Add Collateral</a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="card-body">
+        
+        
+        <form ng-show="appTag">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="fname">Loan Amount</label>
+                        <input type="number" class="form-control" placeholder="Customer Name" ng-model="appData.Loan_Amount__c">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="lname">Tenure</label>
+                        <input type="text" class="form-control" placeholder="Address" ng-model="appData.Term__c">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="city">Account Name</label>
+                        <input type="text" class="form-control" placeholder="Industry" ng-model="appData.Account__c">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect12" >Loan Purpose</label>
+                        <select class="form-control" id="exampleFormControlSelect12" ng-model="appData.Loan_Purpose__c">
+                            <option>Expansion</option>
+                            <option>Seasonal</option>
+                            
+                        </select>
+                    </div>
+                </div>
+               <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect12" >Type Of Application</label>
+                    <select class="form-control" id="exampleFormControlSelect12" ng-model="appData.Type_of_Application__c">
+                        <option>Retail</option>
+                        <option>SME</option>
+                        <option>Individual</option>
+                        <option>Business Loan</option>
+                    </select>
+                </div>
+               </div>
+               <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect12" >Product</label>
+                    <select class="form-control" id="exampleFormControlSelect12" ng-model="appData.Product__c">
+                        <option ng-repeat="x in allProduct" value="{{x.Id}}">{{x.Name}}</option>
+                        
+                    </select>
+                </div>
+               </div>
+
+               <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect12" >Legal Entity</label>
+                    <select class="form-control" id="exampleFormControlSelect12" ng-model="appData.Legal_Entity__c">
+                        <option ng-repeat="x in allLegalENtity" value="{{x.Id}}">{{x.Name}}</option>
+                        
+                    </select>
+                </div>
+               </div>
+                
+            </div>
+            <div class="form-footer pt-5 border-top">
+                <button type="submit" class="btn btn-primary btn-default" ng-click="getApplication();">Submit Application</button>
+            </div>
+            <div class="card-body d-flex align-items-center justify-content-center" style="height: 160px" ng-show="spinnerTag">
+                <div class="sk-rotating-plane"></div>
+            </div>
+        </form>
+        
+    </div>
+    <div class="card-body" ng-show="partyTag">
+        <form>
+            <div ng-repeat="eachRow in partyList">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect12" >Contact</label>
+                            <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Contact__c">
+                                <option ng-repeat="x in allContacts" value="{{x.Id}}">{{x.Name}}</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect12" >Party Type</label>
+                        <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Party_Type__c">
+                            <option>Co-Borrwer</option>
+                            <option>Gurrantor</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary btn-default" value="Delete Contact" ng-click="deleteParty($index)"> Delete Contact
+                    </button>
+                </div>
+                </div>
+               
+            </div>
+            <div class="form-footer pt-5 border-top">
+                <button type="button" class="btn btn-primary btn-default" value="Add Contact" ng-click="addParty()"> Add Contact
+                </button>
+                <button type="button" class="btn btn-primary btn-default" value="Add Contact" ng-click="createPartiesUnderApplication()"> Create Contact
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="card-body" ng-show="collTag">
+        <form>
+            <div ng-repeat="eachRow in collateralList">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect12" >Collateral</label>
+                            <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Collateral__c">
+                                <option ng-repeat="x in allCollateral" value="{{x.Id}}">{{x.Name}}</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect12" >Collateral Type</label>
+                        <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Collateral_Type__c">
+                            <option>Primary Securities</option>
+                            <option>Collateral Securities</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary btn-default" value="Delete Contact" ng-click="deleteCollateral($index)"> Delete Collateral
+                    </button>
+                </div>
+                </div>
+               
+            </div>
+            <div class="form-footer pt-5 border-top">
+                <button type="button" class="btn btn-primary btn-default" value="Add Contact" ng-click="addCollateral()"> Add Collateral
+                </button>
+                <button type="button" class="btn btn-primary btn-default" value="Add Contact" ng-click="createCollateralUnderApplication()"> Create Collateral
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

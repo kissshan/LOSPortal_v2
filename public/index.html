@@ -1,0 +1,520 @@
+	
+
+<html >
+
+  <head  >
+      <base href="/" />
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  
+      <link href="https://unpkg.com/sleek-dashboard/dist/assets/css/sleek.min.css" rel="stylesheet"/>
+      <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet"/>
+  
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://unpkg.com/sleek-dashboard/dist/assets/js/sleek.bundle.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      <style>
+        * {
+          margin: 0;
+          padding: 0
+      }
+      
+      html {
+          height: 100%
+      }
+      
+      p {
+          color: grey
+      }
+      
+      #heading {
+          text-transform: uppercase;
+          color: #673AB7;
+          font-weight: normal
+      }
+      
+      #msform {
+          text-align: center;
+          position: relative;
+          margin-top: 20px
+      }
+      
+      #msform fieldset {
+          background: white;
+          border: 0 none;
+          border-radius: 0.5rem;
+          box-sizing: border-box;
+          width: 100%;
+          margin: 0;
+          padding-bottom: 20px;
+          position: relative
+      }
+      
+      .form-card {
+          text-align: left
+      }
+      
+      #msform fieldset:not(:first-of-type) {
+          display: none
+      }
+      
+      #msform input,
+      #msform textarea {
+          padding: 8px 15px 8px 15px;
+          border: 1px solid #ccc;
+          border-radius: 0px;
+          margin-bottom: 25px;
+          margin-top: 2px;
+          width: 100%;
+          box-sizing: border-box;
+          font-family: montserrat;
+          color: #2C3E50;
+          background-color: #ECEFF1;
+          font-size: 16px;
+          letter-spacing: 1px
+      }
+      
+      #msform input:focus,
+      #msform textarea:focus {
+          -moz-box-shadow: none !important;
+          -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+          border: 1px solid #673AB7;
+          outline-width: 0
+      }
+      
+      #msform .action-button {
+          width: 100px;
+          background: #673AB7;
+          font-weight: bold;
+          color: white;
+          border: 0 none;
+          border-radius: 0px;
+          cursor: pointer;
+          padding: 10px 5px;
+          margin: 10px 0px 10px 5px;
+          float: right
+      }
+      
+      #msform .action-button:hover,
+      #msform .action-button:focus {
+          background-color: #311B92
+      }
+      
+      #msform .action-button-previous {
+          width: 100px;
+          background: #616161;
+          font-weight: bold;
+          color: white;
+          border: 0 none;
+          border-radius: 0px;
+          cursor: pointer;
+          padding: 10px 5px;
+          margin: 10px 5px 10px 0px;
+          float: right
+      }
+      
+      #msform .action-button-previous:hover,
+      #msform .action-button-previous:focus {
+          background-color: #000000
+      }
+      
+      .card {
+          z-index: 0;
+          border: none;
+          position: relative
+      }
+      
+      .fs-title {
+          font-size: 25px;
+          color: #673AB7;
+          margin-bottom: 15px;
+          font-weight: normal;
+          text-align: left
+      }
+      
+      .purple-text {
+          color: #673AB7;
+          font-weight: normal
+      }
+      
+      .steps {
+          font-size: 25px;
+          color: gray;
+          margin-bottom: 10px;
+          font-weight: normal;
+          text-align: right
+      }
+      
+      .fieldlabels {
+          color: gray;
+          text-align: left
+      }
+      
+      #progressbar {
+          margin-bottom: 30px;
+          overflow: hidden;
+          color: lightgrey
+      }
+      
+      #progressbar .active {
+          color: #673AB7
+      }
+      
+      #progressbar li {
+          list-style-type: none;
+          font-size: 15px;
+          width: 25%;
+          float: left;
+          position: relative;
+          font-weight: 400
+      }
+      
+      #progressbar #account:before {
+          font-family: FontAwesome;
+          content: "\f13e"
+      }
+      
+      #progressbar #personal:before {
+          font-family: FontAwesome;
+          content: "\f007"
+      }
+      
+      #progressbar #payment:before {
+          font-family: FontAwesome;
+          content: "\f030"
+      }
+      
+      #progressbar #confirm:before {
+          font-family: FontAwesome;
+          content: "\f00c"
+      }
+      
+      #progressbar li:before {
+          width: 50px;
+          height: 50px;
+          line-height: 45px;
+          display: block;
+          font-size: 20px;
+          color: #ffffff;
+          background: lightgray;
+          border-radius: 50%;
+          margin: 0 auto 10px auto;
+          padding: 2px
+      }
+      
+      #progressbar li:after {
+          content: '';
+          width: 100%;
+          height: 2px;
+          background: lightgray;
+          position: absolute;
+          left: 0;
+          top: 25px;
+          z-index: -1
+      }
+      
+      #progressbar li.active:before,
+      #progressbar li.active:after {
+          background: #6b0125
+      }
+      
+      .progress {
+          height: 20px
+      }
+      
+      .progress-bar {
+          background-color: #830909c2
+      }
+      
+      .fit-image {
+          width: 100%;
+          object-fit: cover
+      }
+      </style>
+      <script>
+        function uploadFile(param) {
+          debugger;
+          var maxFileSize = 140292;
+          appId = param;
+          if(appId != "") {
+              var file = document.getElementById('attachmentFile').files[0];
+              console.log(file);
+              if(file != undefined) {
+                  if(file.size <= maxFileSize) {
+                  attachmentName = file.name;
+                  var fileReader = new FileReader();
+                  fileReader.onloadend = function(e) {
+                      attachment = window.btoa(this.result);  //Base 64 encode the file before sending it
+                      positionIndex=0;
+                      fileSize = attachment.length;
+                      console.log("Total Attachment Length: " + fileSize);
+                      doneUploading = false;
+                      if(fileSize < maxStringSize) {
+                          uploadAttachment(null);
+                      } else {
+                          alert("Base 64 Encoded file is too large.  Maximum size is " + maxStringSize + " your file is " + fileSize + ".");
+                      }
+                      
+                  }
+                  fileReader.onerror = function(e) {
+                      alert("There was an error reading the file.  Please try again.");
+                  }
+                  fileReader.onabort = function(e) {
+                      alert("There was an error reading the file.  Please try again.");
+                  }
+                  
+                  fileReader.readAsBinaryString(file);  //Read the body of the file
+                  
+                  } else {
+                      alert("File must be under 4.3 MB in size.  Your file is too large.  Please try again.");
+                  }
+              } else {
+                  alert("You must choose a file before trying to upload it");
+              }
+          }else {
+              alert("Cannot upload document");
+          }
+          
+      }
+  
+      //Method to send a file to be attached to the Account bound to the page by the standardController
+      //Sends parameters: Account Id, Attachment (body), Attachment Name, and the Id of the Attachment if it exists to the controller   
+      function uploadAttachment(fileId) {
+          var attachmentBody = "";
+          if(fileSize <= positionIndex + chunkSize) {
+              attachmentBody = attachment.substring(positionIndex);
+              doneUploading = true;
+          } else {
+              attachmentBody = attachment.substring(positionIndex, positionIndex + chunkSize);
+          }
+          console.log("Uploading " + attachmentBody.length + " chars of " + fileSize);
+          MenteePortal_Controller.doUploadAttachment(
+          appId, attachmentBody, attachmentName, 
+              function(result, event) {
+              console.log(result);
+              if(event.type === 'exception') {
+                  console.log("exception");
+                  console.log(event);
+              } else if(event.status) {
+                  if(result.substring(0,3) == '00P') {
+                      if(doneUploading == true) {
+                          MenteePortal_Controller.doUploadAttachment(appId, function(result, event) {
+                              debugger;
+                              if(event.status && result) {
+                                  document.getElementById('jumboText').innerHTML = 'Document uploaded successfully.';
+                                  document.getElementById('buttonSection').style.display = 'none';
+                                  document.getElementById('spinner').style.display = 'none';
+                              }
+                              
+                          });
+                          /* window.open("/", "_blank");
+                          window.location.reload(); */
+                      } else {
+                          positionIndex += chunkSize;
+                          uploadAttachment(result);
+                      }
+                  }
+              } else {
+                  console.log(event.message);
+              }
+              },
+              {buffer: true, escape: true, timeout: 120000}
+          );
+      }
+        
+  
+  
+       
+        </script>
+  
+      <!-- ANGULAR CUSTOM -->
+      <script src="js/controllers/MainCtrl.js"></script>
+      
+      <script src="js/controllers/NerdCtrl.js"></script>
+      <script src="js/services/NerdService.js"></script>
+      <script src="js/controllers/GeekCtrl.js"></script>
+      <script src="js/services/GeekService.js"></script>
+      <script src="js/controllers/Partiesctrl.js"></script>
+      <script src="js/controllers/CreatePartyCtrl.js"></script>
+      <script src="js/services/PartiesService.js"></script>
+      <script src="js/controllers/CollateralCtrl.js"></script>
+      <script src="js/controllers/CreateCollateralCtrl.js"></script>
+      <script src="js/services/CollateralService.js"></script>
+      <script src="js/controllers/AccountCtrl.js"></script>
+      <script src="js/services/AccountService.js"></script>
+      <script src="js/controllers/ApplicationCtrl.js"></script>
+      <script src="js/services/ApplicationService.js"></script>
+      <script src="js/controllers/CreateApplicationCtrl.js"></script>
+      <script src="js/controllers/DocumentCtrl.js"></script>
+      <script src="js/services/DocumentService.js"></script>
+      <script src="js/controllers/SigninCtrl.js"></script>
+      <script src="js/services/SigninService.js"></script>
+      <script src="js/controllers/RegisterCtrl.js"></script>
+      <script src="js/controllers/NewapplicationCtrl.js"></script>
+      <script src="js/controllers/CustomerDetailsCtrl.js"></script>
+      <script src="js/controllers/SignupCtrl.js"></script>
+      <script src="js/services/RegisterService.js"></script>
+      <script src="js/appRoutes.js"></script>
+      <script src="js/app.js"></script>
+  </head>
+  
+  <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body" class="overlay-scrollbar" >
+  
+      <div class="wrapper" ng-app="sampleApp" ng-controller="NerdController"> 
+        <!-- left-sidebar -->
+         <aside class="left-sidebar bg-sidebar" ng-show="loginInScs">
+           <div id="sidebar" class="sidebar sidebar-with-footer">
+             <!-- Logo -->
+             <div class="app-brand">
+               <a href="javascript:void(0)" title="Sleek Dashboard">
+                 <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33"><g fill="none" fill-rule="evenodd"><path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z"/><path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z"/></g></svg>
+                 <span class="brand-name text-truncate">Application Dashboard</span>
+               </a>
+             </div>
+             
+             <!-- begin sidebar scrollbar -->
+             <div class="sidebar-scrollbar">
+               <!-- sidebar menu -->
+               <ul class="nav sidebar-inner" id="sidebar-menu">
+                
+                 <li class="has-sub active expand" >
+                   <a class="sidenav-item-link" href="view/account/{{accountId}}" data-toggle="collapse" data-target="#dashboard" aria-expanded="false" aria-controls="dashboard">
+                     <i class="mdi mdi-view-dashboard-outline"></i>
+                     <span class="nav-text">Customer Details</span> </b>
+                   </a>
+                  </li>
+                   <li class="has-sub">
+                     <a class="sidenav-item-link" href="/view/application/{{accountId}}" data-toggle="collapse" data-target="#app" aria-expanded="false" aria-controls="app">
+                       <i class="mdi mdi-pencil-box-multiple"></i>
+                       <span class="nav-text">All Aplication</span> <b class="caret"></b>
+                     </a>
+                   </li>
+    
+                   <li class="has-sub">
+                     <a class="sidenav-item-link" href="/view/collateral/{{accountId}}" data-toggle="collapse" data-target="#tables" aria-expanded="false" aria-controls="tables">
+                       <i class="mdi mdi-table"></i>
+                       <span class="nav-text">Collateral</span> <b class="caret"></b>
+                     </a>
+                      </li>
+                      <li class="has-sub">
+                        <a class="sidenav-item-link" href="/view/parties/{{accountId}}" data-toggle="collapse" data-target="#tables" aria-expanded="false" aria-controls="tables">
+                          <i class="mdi mdi-table"></i>
+                          <span class="nav-text">Application Parties</span> <b class="caret"></b>
+                        </a>
+                         </li>
+                         <li class="has-sub">
+                          <a class="sidenav-item-link" href="/view/Document" data-toggle="collapse" data-target="#tables" aria-expanded="false" aria-controls="tables">
+                            <i class="mdi mdi-table"></i>
+                            <span class="nav-text">Document</span> <b class="caret"></b>
+                          </a>
+                           </li>
+                           
+                    </ul>
+                  </div>
+                </div>
+              </aside>
+    
+              <div class="page-wrapper" >
+                <!-- Header -->
+                <header class="main-header " id="header" ng-show="loginInScs">
+                  <nav class="navbar navbar-static-top navbar-expand-lg pr-0">
+                  <!-- Sidebar toggle button -->
+                  <button id="sidebar-toggler" class="sidebar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                  </button>
+                  <!-- search form -->
+                  <div class="search-form d-none d-lg-inline-block">
+                    <div class="input-group">
+                      <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="mdi mdi-magnify"></i>
+                      </button>
+                      
+                      <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc." autofocus="true" autocomplete="off"/>
+                     </div>
+                    </div>
+    
+                    <div class="navbar-right ">
+                      <ul class="nav navbar-nav">
+                        <li class="dropdown notifications-menu">
+                          <button class="dropdown-toggle">
+                            <i class="mdi mdi-bell-outline"></i>
+                          </button>
+                        </li>
+                       
+                        <!-- User Account -->
+                        <li class="dropdown user-menu">
+                        <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                          <span class="d-none d-lg-inline-block">{{accountDetails.Name}}</span>
+                        </button>
+                      </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </header>
+                <div class="main d-flex justify-content-center w-100" ng-show="!loginInScs && !signup">
+                  <main class="content d-flex p-0">
+                    <div class="container d-flex flex-column">
+                      <div class="row h-100">
+                        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                          <div class="d-table-cell align-middle">
+                            <div class="text-center mt-4">
+                              <h1 class="h2">Welcome back</h1>
+                              <p class="lead">
+                                Sing in to your account to continue
+                              </p>
+                            </div>
+                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                              <div class="card-body">
+                                <div class="m-sm-4">
+                                  <div class="text-center">
+                                    <img src="avatar/IMG_20210226_002412.jpg" alt="Chris Wood" class="img-fluid rounded-circle" width="132" height="132"> 
+                                  </div>
+                                  <form>
+                                    <div class="form-group">
+                                      <label>Customer Id</label>
+                                      <input class="form-control form-control-lg" type="text" name="custId" placeholder="Enter your customer id" ng-model="signinDataMDL.Customer_Identification__c">
+                                    </div>
+                                    <div class="form-group">
+                                      <label>password</label>
+                                      <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" ng-model="signinDataMDL.Password__c">
+                                        <small>
+                                          <a href="#">Forgot password?</a>
+                                        </small>
+                                        <small class="col align-self-end">
+                                          <a href="/view/signup" class="text-end">Signup</a>
+                                        </small>
+                                      
+                                    </div>
+                                    <div class="text-center mt-3">
+                                      <a href="" class="btn btn-lg btn-primary" ng-click="Signin();">Sign in</a>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                
+                    </div>
+                  </main>
+                </div>
+    
+          <div class="content-wrapper">
+            <div class="content">
+              <div ng-view></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </body>
+  </html>

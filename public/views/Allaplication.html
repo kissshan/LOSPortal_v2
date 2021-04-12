@@ -1,0 +1,31 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card-header" style="background: #a00808; color:aliceblue">
+    <b>All Aplications</b> 
+      <button type="submit" class="btn btn-primary btn-default" ng-click="reDirectCreateApp();" style="float:right">New Application</button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><b>Application No.</b></th>
+          <th scope="col"><b>Application Stage</b></th>
+          <th scope="col"><b>Amount</b></th>
+          <th scope="col"><b>Tenure</b></th>
+          <th scope="col"><b>Facility</b></th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="eachRec in applicationList">
+        <tr>
+          <th scope="row">{{eachRec.Name}}</th>
+          <td>{{eachRec.Application_Stage__c}}</td>
+          <td>{{eachRec.Loan_Amount__c}}</td>
+          <td>{{eachRec.Requested_Term__c}}</td>
+          <td>{{eachRec.Product__r.Name}}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+      
+</div>
+

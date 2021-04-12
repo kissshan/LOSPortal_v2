@@ -1,0 +1,72 @@
+<div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+              <b>New Collateral</b>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="firstName"><b>Collateral Name</b></label>
+                    <input type="text" class="form-control" id="firstName" ng-model="collateralDataMDL.Name">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="middleName"><b>Market Value</b></label>
+                    <input type="number" class="form-control" id="middleName" ng-blur='onChange();' ng-model="collateralDataMDL.Market_Valuation__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Collateral TYpe</b></label>
+                    <select id="inputState" class="form-control" ng-blur='onChange();' ng-model="collateralDataMDL.Collateral_Type__c">
+                        <option>Aircraft</option>
+                        <option>All Real Estate Types</option>
+                        <option>Contract Collateral</option>
+                        <option>Government Contracts</option>
+                        <option>Letter of Credit</option>
+                        <option>Life Insurance</option>
+                        <option>Motor Vehicle</option>
+                        <option>Note/Instrument</option>
+                        <option>Other Possessory</option>
+                        <option>Other Titled</option>
+                        <option>Receipts/Bills</option>
+                        <option>Savings/CDs</option>
+                        <option>Securities</option>
+                        <option>Ship</option>
+                        <option>Trailer</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="bankName"><b>Age Of Collateral</b></label>
+                    <input type="number" class="form-control" id="bankName" ng-blur='onChange();' ng-model="collateralDataMDL.Age_Of_Collateral__c">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="inputState"><b>Status</b></label>
+                    <select id="inputState" class="form-control" ng-blur='onChange();' ng-model="collateralDataMDL.Status__c">
+                      <option>Evaluated</option>
+                      <option>Not Evaluated</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="ifscCode"><b>Coverage Used</b></label>
+                    <input type="number" class="form-control" id="ifscCode" ng-blur='onChange();' ng-model="collateralDataMDL.Coverage_Used__c">
+                  </div>
+                </div>
+                <div class="form-row">
+                  
+                    <div class="form-group col-md-4">
+                        <label for="ifscCode"><b>Coverage Remaining</b></label>
+                        <input type="number" class="form-control" id="ifscCode" ng-blur='onChange();' ng-model="collateralDataMDL.Coverage_Remaining__c">
+                      </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+    <div class="card-footer text-center">
+        <button type="submit" class="btn btn-primary btn-default" ng-click="createCollateral();">Submit Collateral</button>
+      </div>
+</div>
