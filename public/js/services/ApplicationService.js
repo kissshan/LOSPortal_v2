@@ -46,6 +46,9 @@ angular.module('ApplicationService',[]).factory('Application',['$http',function(
     dataFactory.createEmploymentDetailRecord = function(data){
         return $http.post(urlBase + 'createEmploymentDetailRecord',data);
     }
+    dataFactory.createFacilityDetailRecord = function(data){
+        return $http.post(urlBase + 'createFacilityDetailRecord',data);
+    }
     dataFactory.getOffers = function(data){
         return $http.post(urlBase + 'getOffers',data);
     }

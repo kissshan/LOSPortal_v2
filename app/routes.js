@@ -1,5 +1,6 @@
 module.exports = function(app, sfcon) {
-
+    const formidable = require('formidable');
+    const fs = require('fs');
     // server routes ===========================================================
     // handle things like api calls
     // authentication routes
@@ -73,8 +74,6 @@ module.exports = function(app, sfcon) {
         try{
             var records = [];
             console.log('request::'+JSON.stringify(req.body));
-            console.log('bodyq::'+JSON.stringify(req.body.custId))
-            console.log('bodyq::'+JSON.stringify(req.body.phoneNumber))
             await sfcon.query("SELECT id,name,Customer_Identification__c,Password__c FROM Account"+ " WHERE Customer_Identification__c ='" +req.body.Customer_Identification__c+"'" +"AND Password__c ='"+ req.body.Password__c+"'",function(err,result){
                 if(err){return console.log(err);}
                 console.log('total size::'+result.totalSize);
@@ -482,5 +481,71 @@ module.exports = function(app, sfcon) {
         }
     });
 
+    app.post('/api/createFacilityDetailRecord',async function(req,res,next){
+        try{
+            await sfcon.sobject('Facility__c').create([req.body]
+                ,function(err,response){
+                if(err){console.log('err::'+err);
+                    return console.log(err)}
+                console.log('response1:::'+JSON.stringify(response))
+                res.send(JSON.stringify(response));
+            })
+            
+        }catch(err){
+            next(err);
+        }
+    });
+
+    app.post('/api/uploadDocument',async function(req,res,next){
+        console.log('inside api::')
+        var fileOnServer =   '';
+        const form = formidable({ multiples: true });
+        console.log('form::'+form)
+        form.parse(req, (err, fields, files) => {
+            console.log('inside form');
+            if(err){
+                console.log('errorr::'+err);
+            }
+           
+            //res.end('jasonrequest::'+JSON.stringify({ files }, null, 2));
+            
+            console.log('files::',files)
+            //var base64data = files[0].buffer.toString('base64');
+            fileOnServer = files;
+            console.log('fileOnServer::'+fileOnServer.name);
+            //console.log('res.json({ fields, files });::'+res.json({files }));
+            //data = fs.readFileSync(fileOnServer);
+           // console.log(new Buffer(data.toString(), 'base64').toString('ascii'));
+           /* sfcon.sobject('Attachment').create({ 
+                ParentId: 'a1T1s000000LBbk',
+                Name : 'kishans document',
+                Body: base64data,
+                ContentType : 'application/pdf',  
+            }, 
+            function(err, uploadedAttachment) {
+                console.log(err,uploadedAttachment);
+            });
+            */
+          });
+          //res.writeHead(200, { 'content-type': 'application/json' });
+          res.end('Success');
+   /* fs.readFile(fileOnServer, function (err, filedata) {
+        if (err){
+        console.error(err);
+        }
+        else{
+            var base64data = new Buffer(filedata).toString('base64');
+            sfcon.sobject('Attachment').create({ 
+                    ParentId: 'a1T1s000000LBbk',
+                    Name : 'kishans document',
+                    Body: base64data,
+                    ContentType : 'application/pdf',  
+                }, 
+                function(err, uploadedAttachment) {
+                    console.log(err,uploadedAttachment);
+            });
+        }
+    });*/
+    });
 
 };

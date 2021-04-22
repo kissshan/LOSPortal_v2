@@ -58,15 +58,20 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         Account__c : '',
 		Product__c : '',
 		Loan_Purpose__c :'',
-        Requested_Amount__c	 :'',
-        Requested_Term__c:'',
-        Requested_Rate__c:'',
-        Holiday_Period__c:'',
         Applicant_Employment_Type__c:'',
         Primary_Applicant_Age__c:'',
         Primary_Applicant_Residence_Status__c:'',
         Security_Coverage__c : '80',
-        Loan_Amount__c : ''
+        Loan_Amount__c : '10000000'
+        }
+
+    $scope.facilityDetailsMDL = {
+        Requested_Amount__c : '',
+        Holiday_Period__c : '',
+        Requested_Interest__c : '',
+        Requested_Tenuer__c : '',
+        Application__c : '',
+        Loan_Product__c : ''
     }
 
     $scope.createBankDetail = function(){
@@ -112,6 +117,19 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		})
     }
 
+    $scope.createFacilityDetails = function(){
+        debugger;
+        console.log('$scope.facilityDetailsMDL::'+$scope.facilityDetailsMDL);
+        $scope.facilityDetailsMDL.Application__c = $scope.appId;
+        $scope.facilityDetailsMDL.Loan_Product__c =  $rootScope.prodId;
+		Application.createFacilityDetailRecord(JSON.stringify($scope.facilityDetailsMDL))
+		.then(function(response){
+			console.log(response.data);
+            alert('Application has been created.');
+		},function(error){
+			$scope.status = 'Unable to load data';
+		})
+    }
     
 
     $scope.getOffers = function(){
@@ -131,7 +149,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 
     $scope.applyforLoan = function(){
         debugger;
-        $scope.applicationDetailsMDL.Loan_Amount__c =  $scope.applicationDetailsMDL.Requested_Amount__c;
         $scope.applicationDetailsMDL.Account__c = $rootScope.accountId;
         $scope.applicationDetailsMDL.Product__c = $rootScope.prodId;
 		Application.createApplication(JSON.stringify($scope.applicationDetailsMDL))
@@ -139,6 +156,7 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
             if(response.data[0].success){
                 console.log(response.data);
                 $scope.appId = response.data[0].id;
+                $scope.createFacilityDetails();
                 $scope.createBankDetail();
                 $scope.createIncomeDetail();
                 $scope.createEmploymentDetail();

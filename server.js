@@ -1,5 +1,6 @@
 // modules =================================================
 var express = require('express');
+
 var app = express();
 //app.disable('x-powered-by');
 var browserSync = require('browser-sync');
@@ -13,7 +14,7 @@ var jsforce = require('jsforce');
 // config files
 var db = require('./config/db');
 
-var port = process.env.PORT || 5002; // set our port
+var port = process.env.PORT || 5003; // set our port
 // mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
 // get all data/stuff of the body (POST) parameters
@@ -32,7 +33,9 @@ var conn = new jsforce.Connection({
     loginUrl: 'https://test.salesforce.com'
 });
 conn.login('ajeet.kumar@utilitarianlab.com.los', 'ajeet@2022KQae5ySIen8rCJpuADH5BqsqL', function(err, userInfo) {
-    if (err) { return console.error(err); }
+    if (err) {
+        console.log('Errorr::'+err);
+         return console.error(err); }
     // Now you can get the access token and instance URL information.
     // Save them to establish connection next time.
     console.log(conn.accessToken);
@@ -66,11 +69,11 @@ app.get('/api/list_user', async function(req, res) {
 })
 
 // start app ===============================================
-//app.listen(process.env.PORT || 5002);
-const host = '0.0.0.0';
+app.listen(process.env.PORT || 5003);
+/*const host = '0.0.0.0';
 const porttttt = process.env.PORT || 5000;
 app.listen(porttttt, host, function() {
     console.log("Server started.......");
-  });
+  });*/
 console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose 

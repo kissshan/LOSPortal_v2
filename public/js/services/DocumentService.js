@@ -7,7 +7,7 @@ angular.module('DocumentService',[]).factory('Document',['$http',function($http)
     };
     dataFactory.uploadSingleFile = function(data) {
         debugger;
-        return $http.post(urlBase + 'uploadAttachment',data);
+        return $http.post(urlBase + 'uploadDocument',data);
     };
 
     return dataFactory;

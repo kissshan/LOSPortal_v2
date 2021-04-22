@@ -1,17 +1,57 @@
-angular.module('DocumentCtrl',[]).controller('DocumentController',function($scope,$http,$q,Document,$window){
+angular.module('DocumentCtrl',['naif.base64']).controller('DocumentController',function($scope,$http,$q,Document,$window){
     console.log('Document Initiated');
 
-	$scope.testMethod = function(param){
+	$scope.uploadMDL = {
+		base64 : '',
+		fileName : '',
+		fileContentType : ''
+	}
+
+	$scope.onChange = function (e, fileList) {
+    alert('this is on-change handler!');
+  };
+  $scope.file = [];
+  $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
+    debugger;
+	alert('this is handler for file reader onload event!');
+	console.log('file::'+file);
+	console.log('fileList::'+fileList);
+	
+	 $scope.file = file;
+  };
+
+  $scope.uploadDocument = function(){
+	  debugger;
+	  console.log('file::'+$scope.file);
+	  $scope.uploadMDL.base64 = $scope.file.base64;
+	  $scope.uploadMDL.fileName = $scope.file.filename;
+	  $scope.uploadMDL.fileContentType = $scope.file.filetype;
+
+	  Document.uploadSingleFile($scope.file)
+        .then(function(response){
+            console.log('response::'+response.data);
+            $scope.documentCategory = response.data;
+        },function(err){
+            console.log('Err::'+err);
+        })
+
+  }
+
+  var uploadedCount = 0;
+
+  $scope.files = [];
+
+	/*$scope.testMethod = function(param){
 		debugger;
 		uploadFile(param)
 	}
 
 
-    //$scope.documentCategory = [];
-    //$scope.documentId = '123';
-    //var base64 = new FileReader();
-    //var reader = new FileReader();
-    /*$scope.getDocumentCategory = function(){
+    $scope.documentCategory = [];
+    $scope.documentId = '123';
+    var base64 = new FileReader();
+    var reader = new FileReader();
+    $scope.getDocumentCategory = function(){
         debugger;
         Document.getDocumentCategory()
         .then(function(response){
@@ -29,16 +69,16 @@ angular.module('DocumentCtrl',[]).controller('DocumentController',function($scop
 		$scope.files = elm.files;
         console.log('files::'+elm.files);
         
-        //reader.readAsDataURL($scope.files); 
+        reader.readAsDataURL($scope.files[0]); 
         
-		/*$scope.getBase64(elm).then(
+		$scope.getBase64(elm).then(
 			data => console.log(data)
-		  );*/
-		  //$scope.getBase641($scope.files[0]);
-		  //console.log(base64.encodeToString($scope.files[0]));
-	//}
+		  );
+		  $scope.getBase641($scope.files[0]);
+		  console.log(base64.encodeToString($scope.files[0]));
+	}
     
-    /*reader.onloadend = function(){
+    reader.onloadend = function(){
         var file = {
             fileName: $scope.files.name,
             fileDescription: $scope.files.type,
@@ -47,9 +87,9 @@ angular.module('DocumentCtrl',[]).controller('DocumentController',function($scop
         };   
         
         console.log('file::'+file);
-    }*/
+    }
 
-    /*$scope.getBase641 = function(file){
+    $scope.getBase641 = function(file){
 		debugger;
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
@@ -58,13 +98,13 @@ angular.module('DocumentCtrl',[]).controller('DocumentController',function($scop
             console.log(reader.result);
             $scope.response = payload.toString().replace("[BASE64]", convert_bitmap($scope.response));
 		};
-	}*/
+	}
     
-   /* $scope.uploadFiles= function(){
+   $scope.uploadFiles= function(){
         debugger;
         console.log('documentId::'+$scope.documentId)
 		console.log('files::'+$scope.files);
-		//var fd = new FormData();
+		var fd = new FormData();
 		$scope.fullbody= {
     
 			"attachments": [{

@@ -6,6 +6,8 @@
     "body-parser": "~1.4.2",
     "browser-sync": "^2.26.13",
     "express": "~4.5.1",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
     "jsforce": "^1.10.0",
     "method-override": "~2.0.2",
     "mongoose": "~3.8.0",
