@@ -1,191 +1,63 @@
-<h2>With Node.js <code>"http"</code> module</h2>
-    <form action="/api/uploadDocument" enctype="multipart/form-data" method="post">
-      <div>Text field title: <input type="text" name="title" /></div>
-      <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div>
-      <input type="submit" value="Upload" />
-    </form>
-<!--div class="container">
-    <form name="form">
-    <h3>Single File Selection</h3>
-      <div class="input-group">
-        <label for="file">Select File</label>
-        <input type="file" ng-model="file" name="file" base-sixty-four-input required onload="onLoad" maxsize="500" accept="image/jpeg,image/png,application/pdf">
-        <span class="help-block">
-          <ul>
-            <li>required</li>
-            <li>maxsize = 500</li>
-            <li>accept = image/*</li>
-          </ul>
-        </span>
-      </div>
-      <div class="alert" ng-class="{'alert-danger': form.file.$invalid, 'alert-success': form.file.$valid}">
-        form.file.$error:
-        {{form.file.$error}}
-      </div>
-    <b>Model Value:</b>
-    {{file.base64}}
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>filename</th>
-        <th>filetype</th>
-        <th>filesize (<i><small>KB</small></i>)</th>
-        <th>base64</th>
-      </tr>
-      <tr ng-show="file">
-        <td>{{file.filename}}</td>
-        <td>{{file.filetype}}</td>
-        <td>{{file.filesize / 1000}}</td>
-        <td>{{file.base64.substring(0, 30)}}...</td>
-      </tr>
-      <tr>
-        <td colspan="4" ng-show="!file">
-          <small><i>No file selected.</i></small>
-        </td>
-      </tr>
-    </table>
-    <hr>
-    <h3>Multiple Files Selection</h3>
-      <div class="input-group">
-        <label for="file">Select Files</label>
-        <span class="help-block">
-          <ul>
-            <li>required</li>
-            <li>minsize = 500</li>
-            <li>accept = image/*, .zip</li>
-            <li>minnum = 2</li>
-          </ul>
-        </span>
-        <input type="file" ng-model="files" name="files" base-sixty-four-input multiple accept="image/*, .zip" minsize="500" required minnum="2" on-change="onChange">
-      </div>
-      <div class="alert" ng-class="{'alert-danger': form.files.$invalid, 'alert-success': form.files.$valid}">
-        form.files.$error:
-        {{form.files.$error}}
-      </div>
-    <b>Model Value:</b>
-    <table class="table table-bordered table-striped">
-      <tr>
-        <th>filename</th>
-        <th>filetype</th>
-        <th>filesize (<i><small>KB</small></i>)</th>
-        <th>base64</th>
-      </tr>
-      <tr ng-repeat="file in files">
-        <td>{{file.filename}}</td>
-        <td>{{file.filetype}}</td>
-        <td>{{file.filesize / 1000}}</td>
-        <td>{{file.base64.substring(0, 30)}}...</td>
-      </tr>
-      <tr>
-        <td colspan="4" ng-show="files.length == 0">
-          <small><i>No file selected.</i></small>
-        </td>
-      </tr>
-    </table>
-    <button type="button" class="btn btn-primary btn-lg" ng-click="uploadDocument();">Upload</button>
-    </form>
-  </div-->
+    <!-- Button trigger modal -->
 
-<!--<div class="container mt-3">
-  <h2>Custom File</h2>
-  <p>To create a custom file upload, wrap a container element with a class of .custom-file around the input with type="file". Then add the .custom-file-input to the file input:</p>
-  <form action="/action_page.php">
-    <p>Custom file:</p>
-    <div class="custom-file mb-3">
-      <input type="file" class="custom-file-input" id="customFile" name="filename">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
-    
-    <p>Default file:</p>
-    <input type="file" id="myFile" name="filename2">
-  
-    <div class="mt-3">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </form>
-</div>
-<div class="row">
-    <div class="col-12">
-      <div class="card card-default">
-        <div>
-          <div>
-              <div class="card-header card-header-border-bottom d-flex justify-content-between">
-                  <h2>All Application - {{documentId}}</h2>
-  
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add-contact"> Add Document
-                  </button>
-              </div>
-              <div class="card-body">
-                <div>
-                  <table id="basic-data-table" class="table nowrap" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th scope="col">DocumentCategory Name</th>
-                        <th scope="col">Attachment</th>
-                        <th scope="col">Upload Attachment</th>
-                      </tr>
-                    </thead>
-                    <tbody ng-repeat='eachRec in documentCategory'>
-                      <tr>
-                        
-                
-                        <th scope="row">{{eachRec.Name}}</th>
-                        <td>
-                          <div class="custom-file mb-1">
-                            <input type="file" class="custom-file-input" id="coverImage" onchange="angular.element(this).scope().filesChanged(this)" multiple>
-                            <label class="custom-file-label" for="coverImage" >Choose file...</label>
-                            <div class="invalid-feedback">Example invalid custom file feedback</div>
-                          </div>
-                        </td>
-                        <td><button type="button" class="mb-1 btn btn-primary" ng-click="uploadFiles();">Upload Document</button></td>
-                      </tr>
-                      
-                    </tbody>
-                  </table>
-                </div>
-                  
-              </div>
-          </div>
-      
-      </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="modal-add-contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form >
-        <div class="modal-header px-4">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Add New Document</h5>
-        </div>
-        <div class="modal-body px-4">
-          <div class="row mb-2">
-            <div class="col-lg-6">
-              <label for="exampleFormControlSelect12" >Document Category</label>
-                    <select class="form-control" id="exampleFormControlSelect12" ng-model="documentId">
-                        <option ng-repeat="x in documentCategory" value="{{x.Id}}">{{x.Name}}</option>
-                    </select>
-            </div>
-          </div>
-          <div class="form-group row mb-6">
-            <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">Upload Attachment</label>
-            <div class="col-sm-8 col-lg-10">
-              <div class="custom-file mb-1">
-                <input type="file" class="custom-file-input" id="coverImage" onchange="angular.element(this).scope().filesChanged(this)" multiple>
-                <label class="custom-file-label" for="coverImage">Choose file...</label>
-                <div class="invalid-feedback">Example invalid custom file feedback</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer px-4">
-          <button type="button" class="btn btn-secondary btn-pill" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary btn-pill" ng-click = "uploadFiles();">Save Document</button>
-        </div>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Upload {{documentName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="modal-body">
+      <form action="/view/uploadDocument" enctype="multipart/form-data" method="post">
+        <div>File: <input type="file" name="thisfile" multiple="multiple" class="form-control"/></div>
+        <div ng-show="false">documentId: <input type="text" name="documentId" multiple="multiple" ng-model="documetParentId"/></div>
+        <div ng-show="false">accId: <input type="text" name="accId" multiple="multiple" ng-model="accountId"/></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
       </form>
+
+      
+    </div>
+      
     </div>
   </div>
-</div>-->
+</div>
+
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <div class="card-header" style="background: #a00808; color:aliceblue">
+        <b>Document Category</b> 
+          <button type="submit" class="btn btn-primary btn-default" ng-click="reDirectCreateApp();" style="float:right">New Application</button>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><b>Document Name</b></th>
+              <th scope="col"><b>Upload Action</b></th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="eachRec in documentCategory">
+            <tr>
+              <th scope="row">{{eachRec.Name}}</th>
+              <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" ng-click="documentUpload($index);">
+                  Upload Document
+                </button>
+              </td>
+              <td>
+                
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+          
+    </div>
+
   
   

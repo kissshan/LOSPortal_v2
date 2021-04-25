@@ -12,6 +12,7 @@
           <th scope="col"><b>Amount</b></th>
           <th scope="col"><b>Tenure</b></th>
           <th scope="col"><b>Facility</b></th>
+          <th scope="col"><b>Document Section</b></th>
         </tr>
       </thead>
       <tbody ng-repeat="eachRec in applicationList">
@@ -21,6 +22,7 @@
           <td>{{eachRec.Loan_Amount__c}}</td>
           <td>{{eachRec.Requested_Term__c}}</td>
           <td>{{eachRec.Product__r.Name}}</td>
+          <td><button type="submit" class="btn btn-primary btn-default" ng-click="reDirecttoDocumentSection($index);">Upload Document</button></td>
         </tr>
         
       </tbody>

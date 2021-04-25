@@ -1,59 +1,17 @@
-angular.module('DocumentCtrl',['naif.base64']).controller('DocumentController',function($scope,$http,$q,Document,$window){
-    console.log('Document Initiated');
-
-	$scope.uploadMDL = {
-		base64 : '',
-		fileName : '',
-		fileContentType : ''
-	}
-
-	$scope.onChange = function (e, fileList) {
-    alert('this is on-change handler!');
-  };
-  $scope.file = [];
-  $scope.onLoad = function (e, reader, file, fileList, fileOjects, fileObj) {
+angular.module('DocumentCtrl',['naif.base64']).controller('DocumentController',function($scope,$http,$q,Document,$window,$rootScope,$routeParams,$location){
     debugger;
-	alert('this is handler for file reader onload event!');
-	console.log('file::'+file);
-	console.log('fileList::'+fileList);
-	
-	 $scope.file = file;
-  };
-
-  $scope.uploadDocument = function(){
-	  debugger;
-	  console.log('file::'+$scope.file);
-	  $scope.uploadMDL.base64 = $scope.file.base64;
-	  $scope.uploadMDL.fileName = $scope.file.filename;
-	  $scope.uploadMDL.fileContentType = $scope.file.filetype;
-
-	  Document.uploadSingleFile($scope.file)
-        .then(function(response){
-            console.log('response::'+response.data);
-            $scope.documentCategory = response.data;
-        },function(err){
-            console.log('Err::'+err);
-        })
-
-  }
-
-  var uploadedCount = 0;
-
-  $scope.files = [];
-
-	/*$scope.testMethod = function(param){
-		debugger;
-		uploadFile(param)
-	}
-
-
-    $scope.documentCategory = [];
-    $scope.documentId = '123';
-    var base64 = new FileReader();
-    var reader = new FileReader();
+	console.log('Document Initiated');
+	$scope.documetParentId = '';
+	$scope.documentName = '';
+	$rootScope.accountId = $routeParams.accountId;
+	$scope.appId = $routeParams.appId;
+	$scope.getDocumentCategoryMDL = {
+        parentId : ''
+    }
     $scope.getDocumentCategory = function(){
         debugger;
-        Document.getDocumentCategory()
+		$scope.getDocumentCategoryMDL.parentId = $scope.appId;
+        Document.getDocumentCategory(JSON.stringify($scope.getDocumentCategoryMDL))
         .then(function(response){
             console.log('response::'+response.data);
             $scope.documentCategory = response.data;
@@ -63,67 +21,11 @@ angular.module('DocumentCtrl',['naif.base64']).controller('DocumentController',f
 
     }
 
-    $scope.filesChanged = function(elm){
+	$scope.documentUpload = function(param){
 		debugger;
-		console.log('elm::'+elm);
-		$scope.files = elm.files;
-        console.log('files::'+elm.files);
-        
-        reader.readAsDataURL($scope.files[0]); 
-        
-		$scope.getBase64(elm).then(
-			data => console.log(data)
-		  );
-		  $scope.getBase641($scope.files[0]);
-		  console.log(base64.encodeToString($scope.files[0]));
-	}
-    
-    reader.onloadend = function(){
-        var file = {
-            fileName: $scope.files.name,
-            fileDescription: $scope.files.type,
-            parentId: results.Id,
-            body: reader.result
-        };   
-        
-        console.log('file::'+file);
-    }
-
-    $scope.getBase641 = function(file){
-		debugger;
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = () => {
-			$scope.response = reader.result;
-            console.log(reader.result);
-            $scope.response = payload.toString().replace("[BASE64]", convert_bitmap($scope.response));
-		};
-	}
-    
-   $scope.uploadFiles= function(){
-        debugger;
-        console.log('documentId::'+$scope.documentId)
-		console.log('files::'+$scope.files);
-		var fd = new FormData();
-		$scope.fullbody= {
-    
-			"attachments": [{
-				"objectId":$scope.documentId,
-				"Body": $scope.files,
-				"ContentType": "image/png",
-				"Name": "picture.png"
-			}]
-		};
-		
-		Document.uploadSingleFile(JSON.stringify($scope.fullbody))
-		.then(function(response){
-			$scope.applications = response.data;
-			console.log(response.data);
-			console.log($scope.Name);
-		},function(error){
-			$scope.status = 'Unable to load files';
-		});
+		$scope.documetParentId = $scope.documentCategory[param].Id;
+		$scope.documentName = $scope.documentCategory[param].Name;
 	}
 
-    $scope.getDocumentCategory();*/
+    $scope.getDocumentCategory();
 })

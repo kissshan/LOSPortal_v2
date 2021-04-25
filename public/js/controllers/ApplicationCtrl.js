@@ -26,5 +26,11 @@ angular.module('ApplicationCtrl',[]).controller('ApplicationController',function
         $location.path("/view/newApplication/"+$rootScope.accountId);
     }
 
+    $scope.reDirecttoDocumentSection = function(param){
+        debugger;
+        console.log('Param::'+param);
+        $location.path("/view/Document/"+$rootScope.accountId+"/application/"+$scope.applicationList[param].Id);
+    }
+
     $scope.getAllapplication();
 });

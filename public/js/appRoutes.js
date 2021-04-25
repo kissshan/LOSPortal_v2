@@ -49,7 +49,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/createParty.html',
 			controller: 'CreatePartyController'	
 		})
-		.when('/view/Document', {
+		.when('/view/Document/:accountId/application/:appId', {
 			templateUrl: 'views/Document.html',
 			controller: 'DocumentController'	
 		})

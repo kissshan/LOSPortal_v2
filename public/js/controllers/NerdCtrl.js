@@ -7,6 +7,19 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope,Nerd
 	console.log('$rootScope.loginInScs = true;::'+$rootScope.loginInScs);
 	$rootScope.loginInScs = false;
 	$rootScope.signup = false;
+	$scope.url = $location.absUrl();
+	
+	if($scope.url.includes('view/signin'))
+	$rootScope.loginInScs = false;
+	else 
+	$rootScope.loginInScs = true;
+	if($scope.url.includes('view')){
+		console.log('yes')
+	}else{
+		$rootScope.loginInScs = false;
+	}
+	console.log($scope.url);
+	
 	$scope.response = '';
 	$scope.indexInitiate = false;
 	if($rootScope.loginInScs)

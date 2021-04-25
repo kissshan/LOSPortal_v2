@@ -8,6 +8,9 @@ module.exports = function(app, sfcon) {
     // frontend routes =========================================================
     // route to handle all angular requests
     debugger;
+
+    let appId = '';
+    let testVar = 'Kishan';
     app.get('/view/*', function(req, res) {
         res.sendfile('./public/index.html');
         //res.sendfile('./public/views/Signin.html');
@@ -74,6 +77,7 @@ module.exports = function(app, sfcon) {
         try{
             var records = [];
             console.log('request::'+JSON.stringify(req.body));
+            
             await sfcon.query("SELECT id,name,Customer_Identification__c,Password__c FROM Account"+ " WHERE Customer_Identification__c ='" +req.body.Customer_Identification__c+"'" +"AND Password__c ='"+ req.body.Password__c+"'",function(err,result){
                 if(err){return console.log(err);}
                 console.log('total size::'+result.totalSize);
@@ -230,10 +234,12 @@ module.exports = function(app, sfcon) {
         //res.send(JSON.stringify({ value: 1 }));
     });
 
-    app.get('/api/getDocumentCategory', async function(req, res, next) {
+    app.post('/api/getDocumentCategory', async function(req, res, next) {
         try {
             var records = [];
-            await sfcon.query("SELECT Id,Name,Application_Document_Category__c,Attachement_ID__c,File_Name__c FROM Application_Document_Category__c WHERE Application__c = 'a0I2v000019yrBL'", function(err, result) {
+            console.log('reqquest body::'+req.body)
+            appId = req.body.parentId;
+            await sfcon.query("SELECT Id,Name,Application_Document_Category__c,Attachment_ID__c,Application__c FROM Application_Document_Category__c WHERE Application__c ='" +req.body.parentId+"'", function(err, result) {
                 if (err) { return console.error(err); }
                 console.log("total : " + result.totalSize);
                 console.log("fetched : " + result.records.length);
@@ -496,56 +502,56 @@ module.exports = function(app, sfcon) {
         }
     });
 
-    app.post('/api/uploadDocument',async function(req,res,next){
-        console.log('inside api::')
+    app.post('/view/uploadDocument',async function(req,res,next){
+        console.log('inside api::'+JSON.stringify(req.body.documentId))
+        console.log('apploicationid::'+ appId);
         var fileOnServer =   '';
         const form = formidable({ multiples: true });
-        console.log('form::'+form)
         form.parse(req, (err, fields, files) => {
-            console.log('inside form');
             if(err){
                 console.log('errorr::'+err);
             }
-           
-            //res.end('jasonrequest::'+JSON.stringify({ files }, null, 2));
-            
-            console.log('files::',files)
-            //var base64data = files[0].buffer.toString('base64');
+            console.log('fields::',fields.documentId)
             fileOnServer = files;
-            console.log('fileOnServer::'+fileOnServer.name);
-            //console.log('res.json({ fields, files });::'+res.json({files }));
-            //data = fs.readFileSync(fileOnServer);
-           // console.log(new Buffer(data.toString(), 'base64').toString('ascii'));
-           /* sfcon.sobject('Attachment').create({ 
-                ParentId: 'a1T1s000000LBbk',
-                Name : 'kishans document',
-                Body: base64data,
-                ContentType : 'application/pdf',  
-            }, 
-            function(err, uploadedAttachment) {
-                console.log(err,uploadedAttachment);
-            });
-            */
-          });
-          //res.writeHead(200, { 'content-type': 'application/json' });
-          res.end('Success');
-   /* fs.readFile(fileOnServer, function (err, filedata) {
-        if (err){
-        console.error(err);
-        }
-        else{
-            var base64data = new Buffer(filedata).toString('base64');
+            let currentFilePath = files.thisfile.path;
+            let filenAME = files.thisfile.name;
+            let fileType = files.thisfile.type;
+            let parentId = fields.documentId;
+            let accId = fields.accId;
+            let rawData = fs.readFileSync(currentFilePath, { encoding: 'base64' })
             sfcon.sobject('Attachment').create({ 
-                    ParentId: 'a1T1s000000LBbk',
-                    Name : 'kishans document',
-                    Body: base64data,
-                    ContentType : 'application/pdf',  
+                    ParentId: parentId,
+                    Name : filenAME,
+                    Body: rawData,
+                    ContentType : fileType,  
                 }, 
                 function(err, uploadedAttachment) {
-                    console.log(err,uploadedAttachment);
-            });
-        }
-    });*/
+                    if(uploadedAttachment.success){
+                        console.log('success::'+uploadedAttachment.id);
+                            try{
+                                 sfcon.sobject('Application_Document_Attachment__c').create({
+                                    Application__c :appId,
+                                    Application_Document_Category__c :parentId,
+                                    Attachment_ID__c :uploadedAttachment.id,
+                                    File_Location__c :'SF ATTACHMENT'
+                                },function(err,response){
+                                    if(err){console.log('err::'+err);
+                                        return console.log(err)}
+                                })
+                            
+                            }catch(err){
+                            next(err);
+                            }
+                            res.writeHead(301, {
+                                'Location': '/view/Document/'+accId+'/application/'+appId
+                                //add other headers here...
+                              });
+                            res.end('Success');
+                    }
+                });
+            
+          });
+   
     });
 
 };
