@@ -37,9 +37,11 @@ angular.module('SignupCtrl',[]).controller('signupController',function($scope,$r
                 confirmButtonText: 'OK',
               }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
+                debugger;
                 if (result.isConfirmed) {
                     $rootScope.signup = false;
                     $location.path("view/signin/");
+                    $scope.$apply();
                 }
               })
 		})

@@ -112,8 +112,8 @@ module.exports = function(app, sfcon) {
     app.post('/api/getPartiesFromAccount',async function(req, res, next){
         try{
             var records = [];
-            
-            await sfcon.query("SELECT id,Name,firstname,lastname,Party_Type__c,Cibil__c FROM contact WHERE AccountId ='" +req.body.id+"'",function(err,result){
+            console.log('requestbody'+JSON.stringify(req.body));
+            await sfcon.query("SELECT id,Name,firstname,lastname,Party_Type__c,Cibil__c FROM contact WHERE AccountId  ='" +req.body.id+"'",function(err,result){
                 if(err){return console.log(err);}
                 res.send(JSON.stringify(result.records));
             });
@@ -239,7 +239,7 @@ module.exports = function(app, sfcon) {
             var records = [];
             console.log('reqquest body::'+req.body)
             appId = req.body.parentId;
-            await sfcon.query("SELECT Id,Name,Application_Document_Category__c,Attachment_ID__c,Application__c FROM Application_Document_Category__c WHERE Application__c ='" +req.body.parentId+"'", function(err, result) {
+            await sfcon.query("SELECT Id,Name,Application_Document_Category__c,Attachment_ID__c,Application__c,Document_Category__r.Incoming_Document__c FROM Application_Document_Category__c WHERE Document_Category__r.Incoming_Document__c = true and Application__c ='" +req.body.parentId+"'", function(err, result) {
                 if (err) { return console.error(err); }
                 console.log("total : " + result.totalSize);
                 console.log("fetched : " + result.records.length);
@@ -317,7 +317,7 @@ module.exports = function(app, sfcon) {
                     console.log('err:'+err)
                     return console.log(err)}
                 console.log('response'+response)
-                res.send(JSON.stringify(response.records));
+                res.send(JSON.stringify(response));
             })
         }catch(err){
             console.log('err in parties creation::'+err);
@@ -434,7 +434,6 @@ module.exports = function(app, sfcon) {
                     console.log('err:'+JSON.stringify(err));
                      return console.error(err); 
                     }
-                console.log("response: ", res);
                 res.send(JSON.stringify(response));
             })
         }catch(err){

@@ -3,6 +3,7 @@ angular.module('ApplicationCtrl',[]).controller('ApplicationController',function
     console.log('Application initiated');
     console.log('$rootScope.accId::'+$rootScope.accountId)
     $scope.applicationList = [];
+    $scope.allContacts = [];
     $rootScope.accountId = $routeParams.accountId;
     $scope.getApplicationsMDL = {
         id : ''
@@ -32,5 +33,45 @@ angular.module('ApplicationCtrl',[]).controller('ApplicationController',function
         $location.path("/view/Document/"+$rootScope.accountId+"/application/"+$scope.applicationList[param].Id);
     }
 
+    $scope.getPartiesFromAccount = function(){
+        debugger;
+        Application.getPartiesFromAccount(JSON.stringify($scope.getApplicationsMDL))
+        .then(function(response){
+            console.log('$scope.allContacts ::'+$scope.allContacts);
+            $scope.allContacts = response.data;
+        },function(err){
+            console.log('err::'+err);
+        })
+    }
+
+    $scope.createPartiesUnderApplication = function(){
+        debugger;
+    if($scope.partyList.length > 0)
+        for(var key in $scope.partyList){
+            if($scope.partyList[key].hasOwnProperty('$$hashKey'))
+                delete $scope.partyList[key]['$$hashKey'];
+            if($scope.partyList[key].Contact__c != '' && $scope.partyList[key].Util_Application__c == '')
+            $scope.partyList[key].Util_Application__c = $scope.applicationId;
+        }
+        Application.createPartiesUnderApplication(JSON.stringify($scope.partyList))
+        .then(function(response){
+            console.log('response::'+response);
+            alert('Contact has been created under Application');
+        },function(err){
+            console.log('err::'+err)
+        })
+    }
+    $scope.partyList = [{Contact__c:'',Util_Application__c:$scope.applicationId,Party_Type__c:''}];
+    $scope.addParty = function(){
+        debugger;
+        $scope.partyList.push({Contact__c:'',Util_Application__c:$scope.applicationId,Party_Type__c:''});
+        console.log('data::'+$scope.partyList);
+    }
+
+    $scope.deleteParty = function(index){
+        $scope.partyList.splice(index,1);
+    }
+
     $scope.getAllapplication();
+    $scope.getPartiesFromAccount();
 });

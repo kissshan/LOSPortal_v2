@@ -9,6 +9,11 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
     $scope.enableLoanDetail = false;
     $scope.enableOfferDetail = false;
     $scope.offersList = [];
+    $scope.getParties = {
+        id : ''
+    }
+    $scope.partyList = [{Contact__c:'',Util_Application__c:'',Party_Type__c:'',Account__c:''}];
+    $scope.getParties.id = $rootScope.accountId;
     $scope.offersMDL = {
         appId : '',
         isRetailApp : true
@@ -22,7 +27,11 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         First_Name__c:'',
         IFSC_Code__c:'',
         Last_Name__c:'',
-        Middle_Name__c:''
+        Middle_Name__c:'',
+        Proximity_Toward_Bank__c:'',
+        Applicant_Locative_Situation__c:'',
+        Banking_references__c:'',
+        Loan_From_Other_Bank__c:''
     };
 
     $scope.incomeDetailsMDL = {
@@ -30,11 +39,8 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         Application__c : '',
 		Additional_Income__c : '',
 		Application__c :'',
-        Expiration_Date__c :'',
         Gross_Income__c:'',
         Income_Type__c:'',
-        Issued_By__c:'',
-        Issued_Date__c:'',
         Monthly_Additional_Income__c:'',
         Monthly_Income__c:'',
         Source_of_Additional_Income__c : '',
@@ -51,7 +57,9 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         Net_Monthly_Income__c:'',
         Net_Annual_Income__c:'',
         Designation__c:'',
-        Mode_Of_Salary__c:''
+        Mode_Of_Salary__c:'',
+        Employment_Current_Tenure__c:'',
+        Employment_Past_Tenure__c:''
     }
 
     $scope.applicationDetailsMDL = {
@@ -157,6 +165,7 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
                 console.log(response.data);
                 $scope.appId = response.data[0].id;
                 $scope.createFacilityDetails();
+                $scope.createPartiesUnderApplication();
                 $scope.createBankDetail();
                 $scope.createIncomeDetail();
                 $scope.createEmploymentDetail();
@@ -204,4 +213,48 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         document.getElementById('personal').classList.remove('active');
         document.getElementById("progressbarr").style="width: 25%"; 
     }
+
+    $scope.getPartiesFromAccount = function(){
+        debugger;
+        Application.getPartiesFromAccount(JSON.stringify($scope.getParties))
+        .then(function(response){
+            console.log('$scope.allContacts ::'+$scope.allContacts);
+            $scope.allContacts = response.data;
+        },function(err){
+            console.log('err::'+err);
+        })
+    }
+
+    $scope.createPartiesUnderApplication = function(){
+        debugger;
+    if($scope.partyList.length > 0)
+        for(var key in $scope.partyList){
+            if($scope.partyList[key].hasOwnProperty('$$hashKey'))
+                delete $scope.partyList[key]['$$hashKey'];
+            if($scope.partyList[key].Contact__c != '' && $scope.partyList[key].Util_Application__c == ''){
+                $scope.partyList[key].Util_Application__c = $scope.appId;
+                $scope.partyList[key].Account__c =  $rootScope.accountId;
+            }
+            
+        }
+        Application.createPartiesUnderApplication(JSON.stringify($scope.partyList))
+        .then(function(response){
+            console.log('response::'+response);
+            alert('Contact has been created under Application');
+        },function(err){
+            console.log('err::'+err)
+        })
+    }
+    
+    $scope.addParty = function(){
+        debugger;
+        $scope.partyList.push({Contact__c:'',Util_Application__c:$scope.applicationId,Party_Type__c:''});
+        console.log('data::'+$scope.partyList);
+    }
+
+    $scope.deleteParty = function(index){
+        $scope.partyList.splice(index,1);
+    }
+
+    $scope.getPartiesFromAccount();
 })

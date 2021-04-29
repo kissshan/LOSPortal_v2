@@ -56,6 +56,37 @@
                   <input type="text" class="form-control" id="ifscCode" ng-model="bankDetailsMDL.IFSC_Code__c">
                 </div>
               </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="bankName"><b>Proximity Toward's Branch</b></label>
+                  <select id="inputState" class="form-control" ng-model="bankDetailsMDL.Proximity_Toward_Bank__c">
+                    <option>Bank branch exists in the residence place of the applicant</option>
+                    <option>Bank branch does not exist in the residence place of the applicant</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="accNumber"><b>Locative Situation</b></label>
+                  <select id="inputState" class="form-control" ng-model="bankDetailsMDL.Applicant_Locative_Situation__c">
+                    <option>Own House</option>
+                    <option>Personal Apartment</option>
+                    <option>Parents Apartment</option>
+                    <option>Rent</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="ifscCode"><b>Banking References</b></label>
+                  <select id="inputState" class="form-control" ng-model="bankDetailsMDL.Banking_references__c">
+                    <option>Deposit and loan</option>
+                    <option>Deposit / credit card</option>
+                    <option>Loan / credit card</option>
+                    <option>None</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="ifscCode"><b>Loan From Other Bank</b></label>
+                  <input type="checkbox" class="form-control" id="ifscCode" ng-model="bankDetailsMDL.Loan_From_Other_Bank__c">
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -109,21 +140,7 @@
                     <input type="number" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Taxable_Amount__c">
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="bankName"><b>Issued By</b></label>
-                    <input type="text" class="form-control" id="bankName" ng-model="incomeDetailsMDL.Issued_By__c">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="accNumber"><b>Issued Date</b></label>
-                    <input type="date" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Issued_Date__c">
-                  </div>
-                  
-                  <div class="form-group col-md-4">
-                    <label for="accNumber"><b>Expiration Date</b></label>
-                    <input type="date" class="form-control" id="accNumber" ng-model="incomeDetailsMDL.Expiration_Date__c">
-                  </div>
-                </div>
+                
               </form>
             </div>
           </div>
@@ -202,13 +219,69 @@
                   <option>Cash</option>
                 </select>
               </div>
-              
-              
+              <div class="form-group col-md-4">
+                <label for="inputState"><b>Tenure With Current Employer</b></label>
+                <select id="inputState" class="form-control" ng-model="employmentDetailsMDL.Employment_Current_Tenure__c">
+                  <option>Greater than 5 years</option>
+                  <option>Between 2 and 5 years</option>
+                  <option>Between 1 and 2 years</option>
+                  <option>Retired</option>
+                  <option>NA</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputState"><b>Tenure With Past Employer</b></label>
+                <select id="inputState" class="form-control" ng-model="employmentDetailsMDL.Employment_Past_Tenure__c">
+                  <option>Greater than 5 years</option>
+                  <option>Between 2 and 5 years</option>
+                  <option>Between 1 and 2 years</option>
+                  <option>Retired</option>
+                  <option>NA</option>
+                </select>
+              </div>
             </div>
           </form>
         </div>
         
       </div>
+    </div>
+
+    <div class="card shadow p-3 mb-5 bg-white rounded">
+      <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+        <b>Add Application Parties</b>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-row" ng-repeat="eachRow in partyList">
+            <div class="form-group col-md-3">
+              <label for="exampleFormControlSelect12" ><b>Contact</b></label>
+                  <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Contact__c">
+                      <option ng-repeat="x in allContacts" value="{{x.Id}}">{{x.Name}}</option>
+                      
+                  </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="exampleFormControlSelect12" ><b>Party Type</b></label>
+              <select class="form-control" id="exampleFormControlSelect12" ng-model="eachRow.Party_Type__c">
+                  <option>Co-Borrwer</option>
+                  <option>Gurrantor</option>
+                  
+              </select>
+            </div>
+            <div class="form-group col-md-3 text-center" style="padding-top: 30px;">
+              <button type="button" class="btn btn-primary btn-default" value="Add Parties" ng-click="addParty()"> Add Parties
+              </button>
+            </div>
+            <div class="form-group col-md-3 text-center" style="padding-top: 30px;">
+              <button type="button" class="btn btn-primary btn-default" value="Delete Contact" ng-click="deleteParty($index)"> Remove Parties
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
     </div>
   </div>
   <div class="card-footer text-center">
@@ -321,6 +394,8 @@
   </div>
       
 </div>
+
+
   
 
 

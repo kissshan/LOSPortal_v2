@@ -8,9 +8,9 @@ angular.module('ApplicationService',[]).factory('Application',['$http',function(
         debugger;
         return $http.post(urlBase + 'createApplication',data);
     };
-    dataFactory.getPartiesFromAccount = function() {
+    dataFactory.getPartiesFromAccount = function(data) {
         debugger;
-        return $http.get(urlBase + 'getPartiesFromAccount');
+        return $http.post(urlBase + 'getPartiesFromAccount',data);
     };
     dataFactory.createPartiesUnderApplication = function(data){
         return $http.post(urlBase + 'createParties',data);
