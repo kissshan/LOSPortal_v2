@@ -17,26 +17,54 @@
                     
                     <form>
                         <div class="form-group">
-                            <label>Name</label>
+                            <label><b>Name</b></label>
                             <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" ng-model="signupDetailsMDL.Name">
                         </div>
                         <div class="form-group">
-                            <label>Phone</label>
+                            <label><b>Phone</b></label>
                             <input class="form-control form-control-lg" type="phone" name="phone" placeholder="Enter your phone number" ng-model="signupDetailsMDL.Phone">
                         </div>
 
                         <div class="form-group">
-                            <label>Email</label>
+                            <label><b>Email</b></label>
                             <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" ng-model="signupDetailsMDL.Customer_Email__c">
                         </div>
                         <div class="form-group">
-                            <label>password</label>
+                            <label><b>password</b></label>
                             <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" ng-model="signupDetailsMDL.Password__c">
                         </div>
                         <div class="form-group">
-                            <label>Re-password</label>
-                            <input class="form-control form-control-lg" type="password" name="re-password" placeholder="Re-enter your password" ng-model="reenterPassword">
+                            <label><b>Gender</b></label>
+                            <select id="inputState" class="form-control" ng-model="signupDetailsMDL.Gender__c">
+                              <option>Male</option>
+                              <option>Female</option>
+                            </select>
                         </div>
+                        <div class="form-group">
+                          <label><b>Martial Status</b></label>
+                          <select id="inputState" class="form-control" ng-model="signupDetailsMDL.Marital_Status__c">
+                            <option>Single</option>
+                            <option>Married</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label><b>Education</b></label>
+                        <select id="inputState" class="form-control" ng-model="signupDetailsMDL.Education_Level__c">
+                          <option>phD.</option>
+                          <option>Master</option>
+                          <option>Graduate</option>
+                          <option>Inter/Matriculation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label><b>No. Of Dependant</b></label>
+                      <select id="inputState" class="form-control" ng-model="signupDetailsMDL.No_of_dependents__c">
+                        <option>0 Person</option>
+                        <option>1 Person</option>
+                        <option>2 Person</option>
+                        <option>3 or more person</option>
+                      </select>
+                  </div>
                         <small>
                             <a href="/view/signin">Sign in</a>
                           </small>

@@ -8,7 +8,11 @@ angular.module('SignupCtrl',[]).controller('signupController',function($scope,$r
         Name : '',
         Phone : '',
         Customer_Email__c : '',
-        Password__c : ''
+        Password__c : '',
+        Gender__c : '',
+        Marital_Status__c : '',
+        Education_Level__c : '',
+        No_of_dependents__c : ''
     }
     $scope.getAccountMDL = {
         id : ''
