@@ -4,6 +4,9 @@ angular.module('ApplicationService',[]).factory('Application',['$http',function(
     dataFactory.getCustomerApplication = function(data) {
         return $http.post(urlBase + 'getApplicationDetails',data);
     };
+    dataFactory.getNewApplicationDetails = function(data) {
+        return $http.post(urlBase + 'getnewApplicationDetails',data);
+    };
     dataFactory.createApplication = function(data) {
         debugger;
         return $http.post(urlBase + 'createApplication',data);

@@ -3,6 +3,7 @@ angular.module('SignupCtrl',[]).controller('signupController',function($scope,$r
     console.log('signup controller initiated::');
     $rootScope.signup = true;
     $rootScope.accountId = '';
+    $rootScope.loginInScs = false;
     $scope.reenterPassword = '';
     $scope.signupDetailsMDL = {
         Name : '',
@@ -44,10 +45,15 @@ angular.module('SignupCtrl',[]).controller('signupController',function($scope,$r
                 debugger;
                 if (result.isConfirmed) {
                     $rootScope.signup = false;
-                    $location.path("view/signin/");
+                    $rootScope.loginInScs = true;
+                    $location.path("view/account/"+$rootScope.accountId);
                     $scope.$apply();
                 }
               })
 		})
+    }
+
+    $scope.enableSignin = function(){
+        
     }
 })

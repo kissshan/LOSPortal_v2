@@ -44,8 +44,11 @@
             <tr>
               <th scope="row">{{eachRec.Name}}</th>
               <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" ng-click="documentUpload($index);">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" ng-click="documentUpload($index);" ng-show="!eachRec.Document_Uploaded__c">
                   Upload Document
+                </button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" ng-click="documentUpload($index);" ng-show="eachRec.Document_Uploaded__c">
+                  Document Upload Successfull
                 </button>
               </td>
               <td>

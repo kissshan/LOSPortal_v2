@@ -123,14 +123,20 @@ module.exports = function(app, sfcon) {
     });
     app.post('/api/getApplicationDetails',async function(req, res, next){
         try{
-            console.log('JSON.stringify(result.records)::'+JSON.stringify(req.body))
             await sfcon.query("SELECT id,Name,Status__c,Loan_Amount__c,Requested_Term__c ,Product__r.name,Application_Stage__c FROM Application__c WHERE Account__c = '" +req.body.id+"'",function(err,result){
                 if(err){return console.log(err);}
-                console.log('total size::'+result.totalSize);
-                console.log('total lenght::'+result.records.length);
-                for(var i=0;i<result.records.length;i++){
-                    console.log('total::'+JSON.stringify(result.records[i]));
-                }
+                res.send(JSON.stringify(result.records));
+                //return result;
+            });
+        }catch(err){
+            next(err);
+        }
+    });
+
+    app.post('/api/getnewApplicationDetails',async function(req, res, next){
+        try{
+            await sfcon.query("SELECT id,Name,Status__c,Loan_Amount__c,Requested_Term__c ,Product__r.name,Application_Stage__c FROM Application__c WHERE id = '" +req.body.id+"'",function(err,result){
+                if(err){return console.log(err);}
                 res.send(JSON.stringify(result.records));
                 //return result;
             });
@@ -239,7 +245,7 @@ module.exports = function(app, sfcon) {
             var records = [];
             console.log('reqquest body::'+req.body)
             appId = req.body.parentId;
-            await sfcon.query("SELECT Id,Name,Application_Document_Category__c,Attachment_ID__c,Application__c,Document_Category__r.Incoming_Document__c FROM Application_Document_Category__c WHERE Document_Category__r.Incoming_Document__c = true and Application__c ='" +req.body.parentId+"'", function(err, result) {
+            await sfcon.query("SELECT Id,Name,Document_Uploaded__c,Application_Document_Category__c,Attachment_ID__c,Application__c,Document_Category__r.Incoming_Document__c FROM Application_Document_Category__c WHERE Document_Category__r.Incoming_Document__c = true and Application__c ='" +req.body.parentId+"'", function(err, result) {
                 if (err) { return console.error(err); }
                 console.log("total : " + result.totalSize);
                 console.log("fetched : " + result.records.length);
@@ -537,6 +543,15 @@ module.exports = function(app, sfcon) {
                                     if(err){console.log('err::'+err);
                                         return console.log(err)}
                                 })
+
+                                sfcon.sobject("Application_Document_Category__c").update({ 
+                                    Document_Uploaded__c : true,
+                                    Id : parentId
+                                  }, function(err, ret) {
+                                    if (err || !ret.success) { return console.error(err, ret); }
+                                    console.log('Updated Successfully : ' + ret.id);
+                                    // ...
+                                  });
                             
                             }catch(err){
                             next(err);

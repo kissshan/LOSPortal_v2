@@ -9,6 +9,10 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
     $scope.enableLoanDetail = false;
     $scope.enableOfferDetail = false;
     $scope.offersList = [];
+
+    $scope.applicationId = {
+        id : ''
+    }
     $scope.getParties = {
         id : ''
     }
@@ -90,8 +94,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		Application.createBankDetailRecord(JSON.stringify($scope.bankDetailsMDL))
 		.then(function(response){
 			console.log(response.data);
-            console.log($scope.Name);
-            alert('Application has been created.');
 		},function(error){
 			$scope.status = 'Unable to load data';
 		})
@@ -105,7 +107,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		Application.createIncomeDetailRecord(JSON.stringify($scope.incomeDetailsMDL))
 		.then(function(response){
 			console.log(response.data);
-            alert('Application has been created.');
 		},function(error){
 			$scope.status = 'Unable to load data';
 		})
@@ -119,7 +120,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		Application.createEmploymentDetailRecord(JSON.stringify($scope.employmentDetailsMDL))
 		.then(function(response){
 			console.log(response.data);
-            alert('Application has been created.');
 		},function(error){
 			$scope.status = 'Unable to load data';
 		})
@@ -133,7 +133,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		Application.createFacilityDetailRecord(JSON.stringify($scope.facilityDetailsMDL))
 		.then(function(response){
 			console.log(response.data);
-            alert('Application has been created.');
 		},function(error){
 			$scope.status = 'Unable to load data';
 		})
@@ -155,6 +154,25 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
 		})
     }
 
+    $scope.notifyApplicationNumber = function(){
+        Application.getNewApplicationDetails(JSON.stringify($scope.applicationId))
+		.then(function(response){
+			console.log(response.data);
+            Swal.fire({
+                title: 'Application Successfully created',
+                text:'Your application has been created successfully. Your application number is : '+ response.data[0].Name,
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    //$window.location.href = '/view/signin';
+                }
+              })
+		},function(error){
+			$scope.status = 'Unable to load data';
+		})
+    }
+
     $scope.applyforLoan = function(){
         debugger;
         $scope.applicationDetailsMDL.Account__c = $rootScope.accountId;
@@ -164,12 +182,14 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
             if(response.data[0].success){
                 console.log(response.data);
                 $scope.appId = response.data[0].id;
+                $scope.applicationId.id = $scope.appId;
                 $scope.createFacilityDetails();
                 $scope.createPartiesUnderApplication();
                 $scope.createBankDetail();
                 $scope.createIncomeDetail();
                 $scope.createEmploymentDetail();
                 $scope.getOffers();
+                $scope.notifyApplicationNumber();
                 document.getElementById('confirm').classList.add('active');
             document.getElementById("progressbarr").style="width: 100%";
             }
@@ -240,7 +260,6 @@ angular.module('CustomerDetailsCtrl',[]).controller('customerDetailsController',
         Application.createPartiesUnderApplication(JSON.stringify($scope.partyList))
         .then(function(response){
             console.log('response::'+response);
-            alert('Contact has been created under Application');
         },function(err){
             console.log('err::'+err)
         })
