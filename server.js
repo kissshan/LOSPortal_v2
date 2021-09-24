@@ -32,7 +32,7 @@ var conn = new jsforce.Connection({
     // you can change loginUrl to connect to sandbox or prerelease env.
     loginUrl: 'https://test.salesforce.com'
 });
-conn.login('ajeet.kumar@utilitarianlab.com.los', 'ajeet@2022', function(err, userInfo) {
+conn.login('ajeet.kumar@utilitarianlab.com.los', 'year@2022', function(err, userInfo) {
     if (err) {
         console.log('Errorr::'+err);
          return console.error(err); }
