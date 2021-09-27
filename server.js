@@ -75,5 +75,5 @@ const porttttt = process.env.PORT || 5000;
 app.listen(porttttt, host, function() {
     console.log("Server started.......");
   });*/
-console.log('Magic happens on port ' + port); // shoutout to the user
+//console.log('Magic happens on port ' + port); // shoutout to the user
 exports = module.exports = app; // expose 
