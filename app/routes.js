@@ -113,7 +113,7 @@ module.exports = function(app, sfcon) {
         try{
             var records = [];
             console.log('requestbody'+JSON.stringify(req.body));
-            await sfcon.query("SELECT id,Name,firstname,lastname,Party_Type__c,Cibil__c FROM contact WHERE AccountId  ='" +req.body.id+"'",function(err,result){
+            await sfcon.query("SELECT id,Name,firstname,lastname,Cibil__c,Email,Phone FROM contact WHERE AccountId  ='" +req.body.id+"'",function(err,result){
                 if(err){return console.log(err);}
                 res.send(JSON.stringify(result.records));
             });
