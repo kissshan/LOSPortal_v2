@@ -12,13 +12,9 @@
 </form>
 
 <div id="accordion">
-  <div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableBankIncomeDetail">
-    <div class="card-header text-center" style="background: #a00808; color:aliceblue">
-      <b>Bank and Income Details</b>
-    </div>
-    <div class="card-body">
-      <div class="card shadow p-3 mb-5 bg-white rounded">
-        <div class="card-header" style="background: #a00808; color:aliceblue" id="bankDetail">
+    
+      <div class="card shadow p-3 mb-5 mt-5 bg-white rounded" ng-show="enableBankIncomeDetail">
+        <div class="card-header text-center" style="background: #007bff; color:aliceblue" id="bankDetail">
           
           <button class="btn" data-toggle="collapse" data-target="#bankcollapseOne" aria-expanded="true" aria-controls="bankcollapseOne">
             <b style="color:aliceblue">Bank Details</b>
@@ -94,8 +90,8 @@
       </div>
       
       <div> 
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-          <div class="card-header text-center" style="background: #a00808; color:aliceblue" id="incomeDetail">
+        <div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableBankIncomeDetail">
+          <div class="card-header text-center" style="background: #007bff; color:aliceblue" id="incomeDetail">
             <button class="btn collapsed" data-toggle="collapse" data-target="#incomecollapseOne" aria-expanded="false" aria-controls="incomecollapseOne">
               <b style="color:aliceblue">Income Details</b>
             </button>
@@ -148,26 +144,18 @@
           
         </div>
       </div>
+    <div class="card-footer text-center" ng-show="enableBankIncomeDetail">
+      <button type="submit" class="btn btn-primary" ng-click="visibleCustomerDetail();" >Proceed</button>
     </div>
-    <div class="card-footer text-center">
-      <button type="submit" class="btn btn-primary">Back</button>
-      <button type="submit" class="btn btn-primary" ng-click="visibleCustomerDetail();">Proceed</button>
-    </div>
-  </div>
-</div>
 
 
 
-<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableCustomerDetail">
-  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
-    <b>Customer Details</b>
-  </div>
-  <div class="card-body">
+  
     
     
     <div> 
-      <div class="card shadow p-3 mb-5 bg-white rounded">
-        <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+      <div class="card shadow p-3 mb-5 mt-5 bg-white rounded" ng-show="enableCustomerDetail">
+        <div class="card-header text-center" style="background: #007bff; color:aliceblue">
           <b>Employer Details</b>
         </div>
         <div class="card-body">
@@ -230,8 +218,8 @@
       </div>
     </div>
 
-    <div class="card shadow p-3 mb-5 bg-white rounded">
-      <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+    <div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableCustomerDetail">
+      <div class="card-header text-center" style="background: #007bff; color:aliceblue">
         <b>Add Application Parties</b>
       </div>
       <div class="card-body">
@@ -265,16 +253,14 @@
       </div>
       
     </div>
-  </div>
-  <div class="card-footer text-center">
-    <button type="submit" class="btn btn-primary" ng-click="backCustomerDetail();">Back</button>
+  <div class="card-footer text-center" ng-show="enableCustomerDetail">
+    <button type="submit" class="btn btn-primary" ng-click="backCustomerDetail();" >Previous</button>
     <button type="submit" class="btn btn-primary" ng-click="visibleLoanDetail();">Proceed</button>
   </div>
-</div>
 
   
-<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableLoanDetail">
-  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+<div class="card shadow p-3 mb-5 mt-5 bg-white rounded" ng-show="enableLoanDetail">
+  <div class="card-header text-center" style="background: #007bff; color:aliceblue">
     <b>Loan Details</b> 
   </div>
   <div class="card-body">
@@ -342,13 +328,13 @@
     </form>
   </div>
   <div class="card-footer text-center">
-    <button type="submit" class="btn btn-primary" ng-click="backLoanDetail();">Back</button>
+    <button type="submit" class="btn btn-primary" ng-click="backLoanDetail();">Previous</button>
     <button type="submit" class="btn btn-primary" ng-click="applyforLoan();">APPLY FOR LOAN</button>
   </div>
 </div>
 
-<div class="card shadow p-3 mb-5 bg-white rounded" ng-show="enableOfferDetail">
-  <div class="card-header text-center" style="background: #a00808; color:aliceblue">
+<div class="card shadow p-3 mb-5 mt-5 bg-white rounded" ng-show="enableOfferDetail">
+  <div class="card-header text-center" style="background: #007bff; color:aliceblue">
     <b>Bank Offers</b> 
   </div>
   <div class="card-body">
