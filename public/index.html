@@ -238,6 +238,10 @@
           width: 100%;
           object-fit: cover
       }
+
+      li:hover {
+        transform: scale(1.01);
+      }
       </style>
       <!-- ANGULAR CUSTOM -->
       <script src="js/controllers/MainCtrl.js"></script>
@@ -289,14 +293,14 @@
                <!-- sidebar menu -->
                <ul class="nav sidebar-inner" id="sidebar-menu">
                 
-                 <li class="has-sub active expand" >
+                 <li class="has-sub expand" >
                    <a class="sidenav-item-link" href="view/account/{{accountId}}" data-toggle="collapse" data-target="#dashboard" aria-expanded="false" aria-controls="dashboard">
                      <i class="mdi mdi-view-dashboard-outline"></i>
                      <span class="nav-text">Customer Details</span> </b>
                    </a>
                   </li>
-                  <li class="has-sub">
-                    <a class="sidenav-item-link" href="/view/parties/{{accountId}}" data-toggle="collapse" data-target="#tables" aria-expanded="false" aria-controls="tables">
+                  <li class="has-sub ">
+                    <a class="sidenav-item-link" href="/view/parties/{{accountId}}" data-toggle="collapse" data-target="#tables" aria-expanded="false" aria-controls="tables" >
                       <i class="mdi mdi-table"></i>
                       <span class="nav-text">All Contacts</span> <b class="caret"></b>
                     </a>
