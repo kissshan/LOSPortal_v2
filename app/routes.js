@@ -113,7 +113,7 @@ module.exports = function(app, sfcon) {
         try{
             var records = [];
             console.log('requestbody'+JSON.stringify(req.body));
-            await sfcon.query("SELECT id,Name,firstname,lastname,Cibil__c,Email,Phone FROM contact WHERE AccountId  ='" +req.body.id+"'",function(err,result){
+            await sfcon.query("SELECT id,Name,MobilePhone,firstname,lastname,Cibil__c,Email,Phone FROM contact WHERE AccountId  ='" +req.body.id+"'",function(err,result){
                 if(err){return console.log(err);}
                 res.send(JSON.stringify(result.records));
             });
@@ -283,12 +283,13 @@ module.exports = function(app, sfcon) {
 
     app.post('/api/createContact',async function(req,res,next){
         try{
+            console.log('reqbody::'+JSON.stringify(req.body));
            await sfcon.sobject('contact').create([
             req.body
             ],function(err,response){
                 if(err){return console.log(err)}
                 console.log('response'+response)
-                res.send(JSON.stringify(response.records));
+                res.send(JSON.stringify(response));
             })
 
         }catch(err){
@@ -315,7 +316,7 @@ module.exports = function(app, sfcon) {
 
     app.post('/api/createParties',async function(req,res,next){
         try{
-            console.log('req.body ::'+req.body );
+            console.log('req.body caretaparty ::'+req.body );
             console.log('req::'+JSON.stringify(req.body));
             await sfcon.sobject('Key_Party__c').create(req.body
                 ,function(err,response){

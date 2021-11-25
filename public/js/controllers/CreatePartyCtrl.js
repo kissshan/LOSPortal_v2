@@ -21,8 +21,22 @@ angular.module('CreatePartyCtrl',[]).controller('CreatePartyController',function
 			$scope.applications = response.data;
 			console.log(response.data);
             $scope.spinnerTag = false;
-            alert('Party has been created.');
-            $location.path("view/parties/"+$rootScope.accountId);
+            Swal.fire({
+                title: 'Contact Added',
+                text:'New Contact has been created under your account.',
+                confirmButtonText: 'OK',
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                debugger;
+                if (result.isConfirmed) {
+                    //$rootScope.signup = false;
+                    //$rootScope.loginInScs = true;
+                    $location.path("view/parties/"+$rootScope.accountId);
+                    $scope.$apply();
+                }
+              })
+            //alert('Party has been created.');
+            //$location.path("view/parties/"+$rootScope.accountId);
             
 		},function(error){
 			$scope.status = 'Unable to load data';

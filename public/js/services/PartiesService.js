@@ -7,6 +7,7 @@ angular.module('PartiesService',[]).factory('Parties',['$http',function($http){
         return $http.post(urlBase + 'getPartiesFromAccount',data);
     };
     dataFactory.createParty = function(data) {
+        debugger;
         return $http.post(urlBase + 'createContact',data);
     };
 
