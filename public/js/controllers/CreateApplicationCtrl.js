@@ -20,7 +20,8 @@ angular.module('CreateApplicationCtrl',[]).controller('CreateApplicationControll
         Term__c:'',
         Type_of_Application__c:'',
         Product__c:'',
-        Legal_Entity__c:''
+        Legal_Entity__c:'',
+        active__c:true
     };
 
 

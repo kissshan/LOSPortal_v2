@@ -2,7 +2,7 @@
   <div class="card-header card-header-border-bottom d-flex justify-content-between" style="background: #007bff; color:aliceblue">
     <h2 style="color:aliceblue">All Collateral</h2>
 
-    <button type="button" class="mb-1 btn btn-primary " ng-click="reDirectCreateCollateral();">New Collateral</button>
+    <button type="button" class="mb-1 btn buttonclr" ng-click="reDirectCreateCollateral();">New Collateral</button>
   </div>
   <div class="card-body">
     <div>
@@ -19,7 +19,7 @@
         </thead>
         <tbody ng-repeat='eachRec in collateralList'>
           <tr>
-            <th scope="row">{{eachRec.Name}}</th>
+            <td scope="row" style="font-weight: 400;">{{eachRec.Name}}</td>
             <td scope="row">{{eachRec.Status__c}}</td>
             <td scope="row">{{eachRec.Collateral_Type__c}}</td>
             <td scope="row">{{eachRec.Market_Valuation__c}}</td>

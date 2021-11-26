@@ -4,7 +4,7 @@
 <div class="card shadow p-3 mb-5 bg-white rounded">
   <div class="card-header" style="background: #007bff; color:aliceblue">
     <b>All Aplications</b> 
-      <button type="submit" class="btn btn-primary btn-default" ng-click="reDirectCreateApp();" style="float:right">New Application</button>
+      <button type="submit" class="btn buttonclr" ng-click="reDirectCreateApp();" style="float:right">New Application</button>
   </div>
   <div class="card-body">
     <table class="table">
@@ -20,13 +20,13 @@
       </thead>
       <tbody ng-repeat="eachRec in applicationList">
         <tr>
-          <th scope="row">{{eachRec.Name}}</th>
+          <td scope="row" style="font-weight: 400;">{{eachRec.Name}}</td>
           <td>{{eachRec.Application_Stage__c}}</td>
           <td>{{eachRec.Loan_Amount__c}}</td>
           <td>{{eachRec.Requested_Term__c}}</td>
           <td>{{eachRec.Product__r.Name}}</td>
           <!--td><button type="submit" class="btn btn-primary btn-default" ng-click="reDirecttoDocumentSection($index);">Upload Document</button></td-->
-          <td class="text-center"><i class="fa fa-upload" aria-hidden="true" ng-click="reDirecttoDocumentSection($index);"></i></td>
+          <td class="text-center"><i class="fa fa-upload" style="color:#007bff;" aria-hidden="true" ng-click="reDirecttoDocumentSection($index);"></i></td>
         </tr>
         
       </tbody>

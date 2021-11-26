@@ -1,8 +1,7 @@
-<div class="card shadow p-3 mb-5 bg-white rounded">
-    <div class="card-body">
         <div class="card shadow p-3 mb-5 bg-white rounded">
-            <div class="card-header text-center" style="background: #a00808; color:aliceblue">
-              <b>New Collateral</b>
+            <div class="card-header text-center" style="background: #007bff; color:aliceblue">
+              <i class="fa fa-arrow-left" style="color:#e2e6eb;float: left;" aria-hidden="true" ng-click="reDirecttoDocumentSection($index);"></i>
+              <b class="">New Collateral</b>
             </div>
             <div class="card-body">
               <form>
@@ -64,9 +63,8 @@
                 </div>
               </form>
             </div>
+            <div class="card-footer text-center">
+              <button type="submit" class="btn btn-primary btn-default" ng-click="createCollateral();">Submit Collateral</button>
+            </div>
           </div>
-    </div>
-    <div class="card-footer text-center">
-        <button type="submit" class="btn btn-primary btn-default" ng-click="createCollateral();">Submit Collateral</button>
-      </div>
-</div>
+    

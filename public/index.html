@@ -242,6 +242,13 @@
       li:hover {
         transform: scale(1.01);
       }
+
+      .buttonclr{
+        color: blue !important;
+        background:white !important;
+      }
+
+      
       </style>
       <!-- ANGULAR CUSTOM -->
       <script src="js/controllers/MainCtrl.js"></script>
@@ -331,7 +338,7 @@
                 </div>
               </aside>
     
-              <div class="page-wrapper" style="background: radial-gradient(black, transparent);">
+              <div class="page-wrapper" style="background: #f3f2ef">
                 <!-- Header -->
                 <header class="main-header " id="header" ng-show="loginInScs">
                   <nav class="navbar navbar-static-top navbar-expand-lg pr-0">
@@ -363,6 +370,11 @@
                         <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                           <span class="d-none d-lg-inline-block">{{accountDetails.Name}}</span>
                         </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Profile</a>
+                          <a class="dropdown-item" href="#">Account Details</a>
+                          <a class="dropdown-item" href="#">SignOut</a>
+                        </div>
                       </li>
                       </ul>
                     </div>
@@ -417,7 +429,7 @@
                   </main>
                 </div>
     
-          <div class="content-wrapper" style="background: radial-gradient(black, transparent);">
+          <div class="content-wrapper" style="background: #f3f2ef">
             <div class="content" >
               <div ng-view></div>
             </div>

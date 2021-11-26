@@ -1,7 +1,7 @@
 <div class="card shadow p-3 mb-5 bg-white rounded">
   <div class="card-header d-flex justify-content-between" style="background: #007bff; color:aliceblue">
     <b>All Contacts</b> 
-    <button type="button" class="mb-1 btn btn-primary " ng-click="reDirectCreateParty();">Add Contact</button>
+    <button type="button" class="mb-1 btn buttonclr " ng-click="reDirectCreateParty();">Add Contact</button>
   </div>
   <div class="card-body">
     <table class="table">
@@ -14,7 +14,7 @@
       </thead>
       <tbody ng-repeat='eachRec in partiesList'>
         <tr>
-          <td>{{eachRec.Name}}</td>
+          <td style="font-weight: 400;">{{eachRec.Name}}</td>
           <td>{{eachRec.Email}}</td>
           <td>{{eachRec.MobilePhone}}</td>
         </tr>
